@@ -1,0 +1,408 @@
+define(['dart_sdk', 'packages/audioplayers/src/api/release_mode.dart', 'packages/flutter/src/services/system_channels.dart'], (function load__packages__audioplayers__src__audioplayers_web_dart(dart_sdk, packages__audioplayers__src__api__release_mode$46dart, packages__flutter__src__services__system_channels$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const html = dart_sdk.html;
+  const _js_helper = dart_sdk._js_helper;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const release_mode = packages__audioplayers__src__api__release_mode$46dart.src__api__release_mode;
+  const platform_channel = packages__flutter__src__services__system_channels$46dart.src__services__platform_channel;
+  const message_codecs = packages__flutter__src__services__system_channels$46dart.src__services__message_codecs;
+  const message_codec = packages__flutter__src__services__system_channels$46dart.src__services__message_codec;
+  var audioplayers_web = Object.create(dart.library);
+  var $play = dartx.play;
+  var $putIfAbsent = dartx.putIfAbsent;
+  var $firstWhere = dartx.firstWhere;
+  var $_get = dartx._get;
+  var $toInt = dartx.toInt;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    IdentityMapOfString$WrappedPlayer: () => (T.IdentityMapOfString$WrappedPlayer = dart.constFn(_js_helper.IdentityMap$(core.String, audioplayers_web.WrappedPlayer)))(),
+    VoidToWrappedPlayer: () => (T.VoidToWrappedPlayer = dart.constFn(dart.fnType(audioplayers_web.WrappedPlayer, [])))(),
+    ReleaseModeTobool: () => (T.ReleaseModeTobool = dart.constFn(dart.fnType(core.bool, [release_mode.ReleaseMode])))(),
+    doubleN: () => (T.doubleN = dart.constFn(dart.nullable(core.double)))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: message_codecs.StandardMessageCodec.prototype
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: message_codecs.StandardMethodCodec.prototype,
+        [StandardMethodCodec_messageCodec]: C[1] || CT.C1
+      });
+    }
+  }, false);
+  var C = Array(2).fill(void 0);
+  var I = [
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.19.1/lib/src/audioplayers_web.dart",
+    "package:audioplayers/src/audioplayers_web.dart"
+  ];
+  var pausedAt = dart.privateName(audioplayers_web, "WrappedPlayer.pausedAt");
+  var currentVolume = dart.privateName(audioplayers_web, "WrappedPlayer.currentVolume");
+  var currentPlaybackRate = dart.privateName(audioplayers_web, "WrappedPlayer.currentPlaybackRate");
+  var currentReleaseMode = dart.privateName(audioplayers_web, "WrappedPlayer.currentReleaseMode");
+  var currentUrl = dart.privateName(audioplayers_web, "WrappedPlayer.currentUrl");
+  var isPlaying = dart.privateName(audioplayers_web, "WrappedPlayer.isPlaying");
+  var player = dart.privateName(audioplayers_web, "WrappedPlayer.player");
+  var _cancel = dart.privateName(audioplayers_web, "_cancel");
+  audioplayers_web.WrappedPlayer = class WrappedPlayer extends core.Object {
+    get pausedAt() {
+      return this[pausedAt];
+    }
+    set pausedAt(value) {
+      this[pausedAt] = value;
+    }
+    get currentVolume() {
+      return this[currentVolume];
+    }
+    set currentVolume(value) {
+      this[currentVolume] = value;
+    }
+    get currentPlaybackRate() {
+      return this[currentPlaybackRate];
+    }
+    set currentPlaybackRate(value) {
+      this[currentPlaybackRate] = value;
+    }
+    get currentReleaseMode() {
+      return this[currentReleaseMode];
+    }
+    set currentReleaseMode(value) {
+      this[currentReleaseMode] = value;
+    }
+    get currentUrl() {
+      return this[currentUrl];
+    }
+    set currentUrl(value) {
+      this[currentUrl] = value;
+    }
+    get isPlaying() {
+      return this[isPlaying];
+    }
+    set isPlaying(value) {
+      this[isPlaying] = value;
+    }
+    get player() {
+      return this[player];
+    }
+    set player(value) {
+      this[player] = value;
+    }
+    setUrl(url) {
+      if (url == null) dart.nullFailed(I[0], 19, 22, "url");
+      this.currentUrl = url;
+      this.stop();
+      this.recreateNode();
+      if (dart.test(this.isPlaying)) {
+        this.resume();
+      }
+    }
+    setVolume(volume) {
+      let t0;
+      if (volume == null) dart.nullFailed(I[0], 29, 25, "volume");
+      this.currentVolume = volume;
+      t0 = this.player;
+      t0 == null ? null : t0.volume = volume;
+    }
+    setPlaybackRate(rate) {
+      let t0;
+      if (rate == null) dart.nullFailed(I[0], 34, 31, "rate");
+      this.currentPlaybackRate = rate;
+      t0 = this.player;
+      t0 == null ? null : t0.playbackRate = rate;
+    }
+    recreateNode() {
+      let t0, t0$, t0$0;
+      if (this.currentUrl == null) {
+        return;
+      }
+      this.player = html.AudioElement.new(this.currentUrl);
+      t0 = this.player;
+      t0 == null ? null : t0.loop = this.shouldLoop();
+      t0$ = this.player;
+      t0$ == null ? null : t0$.volume = this.currentVolume;
+      t0$0 = this.player;
+      t0$0 == null ? null : t0$0.playbackRate = this.currentPlaybackRate;
+    }
+    shouldLoop() {
+      return this.currentReleaseMode == release_mode.ReleaseMode.LOOP;
+    }
+    setReleaseMode(releaseMode) {
+      let t0;
+      if (releaseMode == null) dart.nullFailed(I[0], 51, 35, "releaseMode");
+      this.currentReleaseMode = releaseMode;
+      t0 = this.player;
+      t0 == null ? null : t0.loop = this.shouldLoop();
+    }
+    release() {
+      this[_cancel]();
+      this.player = null;
+    }
+    start(position) {
+      let t0, t0$;
+      if (position == null) dart.nullFailed(I[0], 61, 21, "position");
+      this.isPlaying = true;
+      if (this.currentUrl == null) {
+        return;
+      }
+      if (this.player == null) {
+        this.recreateNode();
+      }
+      t0 = this.player;
+      t0 == null ? null : t0[$play]();
+      t0$ = this.player;
+      t0$ == null ? null : t0$.currentTime = position;
+    }
+    resume() {
+      let t0;
+      this.start((t0 = this.pausedAt, t0 == null ? 0.0 : t0));
+    }
+    pause() {
+      let t0;
+      this.pausedAt = (t0 = this.player, t0 == null ? null : t0.currentTime);
+      this[_cancel]();
+    }
+    stop() {
+      this.pausedAt = 0.0;
+      this[_cancel]();
+    }
+    [_cancel]() {
+      let t0;
+      this.isPlaying = false;
+      t0 = this.player;
+      t0 == null ? null : t0.pause();
+      if (this.currentReleaseMode == release_mode.ReleaseMode.RELEASE) {
+        this.player = null;
+      }
+    }
+  };
+  (audioplayers_web.WrappedPlayer.new = function() {
+    this[pausedAt] = null;
+    this[currentVolume] = 1.0;
+    this[currentPlaybackRate] = 1.0;
+    this[currentReleaseMode] = release_mode.ReleaseMode.RELEASE;
+    this[currentUrl] = null;
+    this[isPlaying] = false;
+    this[player] = null;
+    ;
+  }).prototype = audioplayers_web.WrappedPlayer.prototype;
+  dart.addTypeTests(audioplayers_web.WrappedPlayer);
+  dart.addTypeCaches(audioplayers_web.WrappedPlayer);
+  dart.setMethodSignature(audioplayers_web.WrappedPlayer, () => ({
+    __proto__: dart.getMethods(audioplayers_web.WrappedPlayer.__proto__),
+    setUrl: dart.fnType(dart.void, [core.String]),
+    setVolume: dart.fnType(dart.void, [core.double]),
+    setPlaybackRate: dart.fnType(dart.void, [core.double]),
+    recreateNode: dart.fnType(dart.void, []),
+    shouldLoop: dart.fnType(core.bool, []),
+    setReleaseMode: dart.fnType(dart.void, [release_mode.ReleaseMode]),
+    release: dart.fnType(dart.void, []),
+    start: dart.fnType(dart.void, [core.double]),
+    resume: dart.fnType(dart.void, []),
+    pause: dart.fnType(dart.void, []),
+    stop: dart.fnType(dart.void, []),
+    [_cancel]: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(audioplayers_web.WrappedPlayer, I[1]);
+  dart.setFieldSignature(audioplayers_web.WrappedPlayer, () => ({
+    __proto__: dart.getFields(audioplayers_web.WrappedPlayer.__proto__),
+    pausedAt: dart.fieldType(dart.nullable(core.double)),
+    currentVolume: dart.fieldType(core.double),
+    currentPlaybackRate: dart.fieldType(core.double),
+    currentReleaseMode: dart.fieldType(release_mode.ReleaseMode),
+    currentUrl: dart.fieldType(dart.nullable(core.String)),
+    isPlaying: dart.fieldType(core.bool),
+    player: dart.fieldType(dart.nullable(html.AudioElement))
+  }));
+  var players = dart.privateName(audioplayers_web, "AudioplayersPlugin.players");
+  var StandardMethodCodec_messageCodec = dart.privateName(message_codecs, "StandardMethodCodec.messageCodec");
+  audioplayers_web.AudioplayersPlugin = class AudioplayersPlugin extends core.Object {
+    get players() {
+      return this[players];
+    }
+    set players(value) {
+      this[players] = value;
+    }
+    static registerWith(registrar) {
+      if (registrar == null) dart.nullFailed(I[0], 100, 38, "registrar");
+      let channel = new platform_channel.MethodChannel.new("xyz.luan/audioplayers", C[0] || CT.C0, registrar);
+      let instance = new audioplayers_web.AudioplayersPlugin.new();
+      channel.setMethodCallHandler(dart.bind(instance, 'handleMethodCall'));
+    }
+    getOrCreatePlayer(playerId) {
+      if (playerId == null) dart.nullFailed(I[0], 111, 42, "playerId");
+      return this.players[$putIfAbsent](playerId, dart.fn(() => new audioplayers_web.WrappedPlayer.new(), T.VoidToWrappedPlayer()));
+    }
+    setUrl(playerId, url) {
+      if (playerId == null) dart.nullFailed(I[0], 115, 39, "playerId");
+      if (url == null) dart.nullFailed(I[0], 115, 56, "url");
+      return async.async(audioplayers_web.WrappedPlayer, (function* setUrl() {
+        let player = this.getOrCreatePlayer(playerId);
+        if (player.currentUrl == url) {
+          return player;
+        }
+        player.setUrl(url);
+        return player;
+      }).bind(this));
+    }
+    parseReleaseMode(value) {
+      if (value == null) dart.nullFailed(I[0], 126, 39, "value");
+      return release_mode.ReleaseMode.values[$firstWhere](dart.fn(e => {
+        if (e == null) dart.nullFailed(I[0], 127, 43, "e");
+        return dart.toString(e) == value;
+      }, T.ReleaseModeTobool()));
+    }
+    handleMethodCall(call) {
+      if (call == null) dart.nullFailed(I[0], 130, 47, "call");
+      return async.async(dart.dynamic, (function* handleMethodCall() {
+        let t0, t0$, t0$0, t0$1, t0$2, t0$3;
+        let method = call.method;
+        let args = core.Map.as(call.arguments);
+        let playerId = core.String.as(args[$_get]("playerId"));
+        switch (method) {
+          case "setUrl":
+          {
+            {
+              let url = core.String.as(args[$_get]("url"));
+              yield this.setUrl(playerId, url);
+              return 1;
+            }
+          }
+          case "play":
+          {
+            {
+              let url = core.String.as(args[$_get]("url"));
+              let volume = (t0 = T.doubleN().as(args[$_get]("volume")), t0 == null ? 1.0 : t0);
+              let position = (t0$ = T.doubleN().as(args[$_get]("position")), t0$ == null ? 0.0 : t0$);
+              let player = (yield this.setUrl(playerId, url));
+              player.setVolume(volume);
+              player.start(position);
+              return 1;
+            }
+          }
+          case "getCurrentPosition":
+          {
+            {
+              let position = (t0$0 = this.getOrCreatePlayer(playerId).player, t0$0 == null ? null : t0$0.currentTime);
+              if (position == null) {
+                return null;
+              }
+              return (dart.notNull(position) * 1000)[$toInt]();
+            }
+          }
+          case "getDuration":
+          {
+            {
+              let duration = (t0$1 = this.getOrCreatePlayer(playerId).player, t0$1 == null ? null : t0$1.duration);
+              if (duration == null) {
+                return null;
+              }
+              return (dart.notNull(duration) * 1000)[$toInt]();
+            }
+          }
+          case "pause":
+          {
+            {
+              this.getOrCreatePlayer(playerId).pause();
+              return 1;
+            }
+          }
+          case "stop":
+          {
+            {
+              this.getOrCreatePlayer(playerId).stop();
+              return 1;
+            }
+          }
+          case "resume":
+          {
+            {
+              this.getOrCreatePlayer(playerId).resume();
+              return 1;
+            }
+          }
+          case "setVolume":
+          {
+            {
+              let volume = (t0$2 = T.doubleN().as(args[$_get]("volume")), t0$2 == null ? 1.0 : t0$2);
+              this.getOrCreatePlayer(playerId).setVolume(volume);
+              return 1;
+            }
+          }
+          case "setReleaseMode":
+          {
+            {
+              let releaseMode = this.parseReleaseMode(core.String.as(args[$_get]("releaseMode")));
+              this.getOrCreatePlayer(playerId).setReleaseMode(releaseMode);
+              return 1;
+            }
+          }
+          case "release":
+          {
+            {
+              this.getOrCreatePlayer(playerId).release();
+              return 1;
+            }
+          }
+          case "setPlaybackRate":
+          {
+            {
+              let rate = (t0$3 = T.doubleN().as(args[$_get]("playbackRate")), t0$3 == null ? 1.0 : t0$3);
+              this.getOrCreatePlayer(playerId).setPlaybackRate(rate);
+              return 1;
+            }
+          }
+          case "seek":
+          default:
+          {
+            dart.throw(new message_codec.PlatformException.new({code: "Unimplemented", details: "The audioplayers plugin for web doesn't implement the method '" + dart.str(method) + "'"}));
+          }
+        }
+      }).bind(this));
+    }
+  };
+  (audioplayers_web.AudioplayersPlugin.new = function() {
+    this[players] = new (T.IdentityMapOfString$WrappedPlayer()).new();
+    ;
+  }).prototype = audioplayers_web.AudioplayersPlugin.prototype;
+  dart.addTypeTests(audioplayers_web.AudioplayersPlugin);
+  dart.addTypeCaches(audioplayers_web.AudioplayersPlugin);
+  dart.setMethodSignature(audioplayers_web.AudioplayersPlugin, () => ({
+    __proto__: dart.getMethods(audioplayers_web.AudioplayersPlugin.__proto__),
+    getOrCreatePlayer: dart.fnType(audioplayers_web.WrappedPlayer, [core.String]),
+    setUrl: dart.fnType(async.Future$(audioplayers_web.WrappedPlayer), [core.String, core.String]),
+    parseReleaseMode: dart.fnType(release_mode.ReleaseMode, [core.String]),
+    handleMethodCall: dart.fnType(async.Future, [message_codec.MethodCall])
+  }));
+  dart.setLibraryUri(audioplayers_web.AudioplayersPlugin, I[1]);
+  dart.setFieldSignature(audioplayers_web.AudioplayersPlugin, () => ({
+    __proto__: dart.getFields(audioplayers_web.AudioplayersPlugin.__proto__),
+    players: dart.fieldType(core.Map$(core.String, audioplayers_web.WrappedPlayer))
+  }));
+  dart.trackLibraries("packages/audioplayers/src/audioplayers_web.dart", {
+    "package:audioplayers/src/audioplayers_web.dart": audioplayers_web
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["audioplayers_web.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/audioplayers/src/audioplayers_web.dart.lib.js"}');
+  // Exports:
+  return {
+    src__audioplayers_web: audioplayers_web
+  };
+}));
+
+//# sourceMappingURL=audioplayers_web.dart.lib.js.map

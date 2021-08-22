@@ -1,0 +1,910 @@
+define(['dart_sdk', 'packages/intl/src/intl/number_parser.dart', 'packages/latlong2/spline.dart'], (function load__packages__latlong2__latlong_dart(dart_sdk, packages__intl__src__intl__number_parser$46dart, packages__latlong2__spline$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const math = dart_sdk.math;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const number_format = packages__intl__src__intl__number_parser$46dart.src__intl__number_format;
+  const spline = packages__latlong2__spline$46dart.spline;
+  var latlong = Object.create(dart.library);
+  var $toDouble = dartx.toDouble;
+  var $isNaN = dartx.isNaN;
+  var $abs = dartx.abs;
+  var $round = dartx.round;
+  var $hashCode = dartx.hashCode;
+  var $clear = dartx.clear;
+  var $add = dartx.add;
+  var $addAll = dartx.addAll;
+  var $first = dartx.first;
+  var $last = dartx.last;
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $toInt = dartx.toInt;
+  var $modulo = dartx['%'];
+  var $insert = dartx.insert;
+  var $isEmpty = dartx.isEmpty;
+  var $forEach = dartx.forEach;
+  var $elementAt = dartx.elementAt;
+  var $floor = dartx.floor;
+  var $toString = dartx.toString;
+  var $floorToDouble = dartx.floorToDouble;
+  dart._checkModuleNullSafetyMode(false);
+  var T$ = {
+    doubleAnddoubleToLatLng: () => (T$.doubleAnddoubleToLatLng = dart.constFn(dart.fnType(latlong.LatLng, [core.double, core.double])))(),
+    PathOfLatLng: () => (T$.PathOfLatLng = dart.constFn(latlong.Path$(latlong.LatLng)))(),
+    JSArrayOfLatLng: () => (T$.JSArrayOfLatLng = dart.constFn(_interceptors.JSArray$(latlong.LatLng)))(),
+    CatmullRomSpline2DOfdouble: () => (T$.CatmullRomSpline2DOfdouble = dart.constFn(spline.CatmullRomSpline2D$(core.double)))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T$);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: latlong.Vincenty.prototype
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: latlong.Haversine.prototype
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: latlong.LengthUnit.prototype,
+        [scaleFactor$]: 1000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: latlong.LengthUnit.prototype,
+        [scaleFactor$]: 100
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: latlong.LengthUnit.prototype,
+        [scaleFactor$]: 1
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: latlong.LengthUnit.prototype,
+        [scaleFactor$]: 0.001
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: latlong.LengthUnit.prototype,
+        [scaleFactor$]: 0.0006213712
+      });
+    },
+    get C7() {
+      return C[7] = dart.fn(latlong._defaultLatLngFactory, T$.doubleAnddoubleToLatLng());
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: latlong.Distance.prototype,
+        [_calculator]: C[0] || CT.C0,
+        [_roundResult]: true,
+        [_radius]: 6378137
+      });
+    }
+  }, false);
+  var C = Array(9).fill(void 0);
+  var I = [
+    "package:latlong2/latlong.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/latlong2-0.8.0/lib/latlong/calculator/Haversine.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/latlong2-0.8.0/lib/latlong/calculator/Vincenty.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/latlong2-0.8.0/lib/latlong/Distance.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/latlong2-0.8.0/lib/latlong/LatLng.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/latlong2-0.8.0/lib/latlong/LengthUnit.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/latlong2-0.8.0/lib/latlong/Path.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/latlong2-0.8.0/lib/latlong/Circle.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/latlong2-0.8.0/lib/latlong.dart"
+  ];
+  latlong.DistanceCalculator = class DistanceCalculator extends core.Object {};
+  (latlong.DistanceCalculator.new = function() {
+    ;
+  }).prototype = latlong.DistanceCalculator.prototype;
+  dart.addTypeTests(latlong.DistanceCalculator);
+  dart.addTypeCaches(latlong.DistanceCalculator);
+  dart.setLibraryUri(latlong.DistanceCalculator, I[0]);
+  latlong.Haversine = class Haversine extends core.Object {
+    distance(p1, p2) {
+      if (p1 == null) dart.nullFailed(I[1], 32, 32, "p1");
+      if (p2 == null) dart.nullFailed(I[1], 32, 49, "p2");
+      let sinDLat = math.sin((dart.notNull(p2.latitudeInRad) - dart.notNull(p1.latitudeInRad)) / 2);
+      let sinDLng = math.sin((dart.notNull(p2.longitudeInRad) - dart.notNull(p1.longitudeInRad)) / 2);
+      let a = sinDLat * sinDLat + sinDLng * sinDLng * math.cos(p1.latitudeInRad) * math.cos(p2.latitudeInRad);
+      let c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+      return 6378137 * c;
+    }
+    offset(from, distanceInMeter, bearing) {
+      if (from == null) dart.nullFailed(I[1], 62, 20, "from");
+      if (distanceInMeter == null) dart.nullFailed(I[1], 62, 39, "distanceInMeter");
+      if (bearing == null) dart.nullFailed(I[1], 62, 69, "bearing");
+      if (dart.notNull(bearing) < -180 || dart.notNull(bearing) > 180) {
+        dart.throw(new core.ArgumentError.value(bearing, "bearing", "Angle must be between -180 and 180 degrees"));
+      }
+      let h = latlong.degToRadian(bearing[$toDouble]());
+      let a = dart.notNull(distanceInMeter) / 6378137;
+      let lat2 = math.asin(math.sin(from.latitudeInRad) * math.cos(a) + math.cos(from.latitudeInRad) * math.sin(a) * math.cos(h));
+      let lng2 = dart.notNull(from.longitudeInRad) + math.atan2(math.sin(h) * math.sin(a) * math.cos(from.latitudeInRad), math.cos(a) - math.sin(from.latitudeInRad) * math.sin(lat2));
+      return new latlong.LatLng.new(latlong.radianToDeg(lat2), latlong.radianToDeg(lng2));
+    }
+  };
+  (latlong.Haversine.new = function() {
+    ;
+  }).prototype = latlong.Haversine.prototype;
+  dart.addTypeTests(latlong.Haversine);
+  dart.addTypeCaches(latlong.Haversine);
+  latlong.Haversine[dart.implements] = () => [latlong.DistanceCalculator];
+  dart.setMethodSignature(latlong.Haversine, () => ({
+    __proto__: dart.getMethods(latlong.Haversine.__proto__),
+    distance: dart.fnType(core.double, [latlong.LatLng, latlong.LatLng]),
+    offset: dart.fnType(latlong.LatLng, [latlong.LatLng, core.double, core.double])
+  }));
+  dart.setLibraryUri(latlong.Haversine, I[0]);
+  latlong.Vincenty = class Vincenty extends core.Object {
+    distance(p1, p2) {
+      if (p1 == null) dart.nullFailed(I[2], 32, 32, "p1");
+      if (p2 == null) dart.nullFailed(I[2], 32, 49, "p2");
+      let a = 6378137;
+      let b = 6356752.314245;
+      let f = 0.0033528106647474805;
+      let l = dart.notNull(p2.longitudeInRad) - dart.notNull(p1.longitudeInRad);
+      let u1 = math.atan((1 - f) * math.tan(p1.latitudeInRad));
+      let u2 = math.atan((1 - f) * math.tan(p2.latitudeInRad));
+      let sinU1 = math.sin(u1);
+      let cosU1 = math.cos(u1);
+      let sinU2 = math.sin(u2);
+      let cosU2 = math.cos(u2);
+      let sinLambda = null;
+      let cosLambda = null;
+      let sinSigma = null;
+      let cosSigma = null;
+      let sigma = null;
+      let sinAlpha = null;
+      let cosSqAlpha = null;
+      let cos2SigmaM = null;
+      let lambda = l;
+      let lambdaP = null;
+      let maxIterations = 200;
+      do {
+        sinLambda = math.sin(lambda);
+        cosLambda = math.cos(lambda);
+        sinSigma = math.sqrt(cosU2 * dart.notNull(sinLambda) * (cosU2 * dart.notNull(sinLambda)) + (cosU1 * sinU2 - sinU1 * cosU2 * dart.notNull(cosLambda)) * (cosU1 * sinU2 - sinU1 * cosU2 * dart.notNull(cosLambda)));
+        if (sinSigma === 0) {
+          return 0.0;
+        }
+        cosSigma = sinU1 * sinU2 + cosU1 * cosU2 * dart.notNull(cosLambda);
+        sigma = math.atan2(sinSigma, cosSigma);
+        sinAlpha = cosU1 * cosU2 * dart.notNull(sinLambda) / dart.notNull(sinSigma);
+        cosSqAlpha = 1 - dart.notNull(sinAlpha) * dart.notNull(sinAlpha);
+        cos2SigmaM = dart.notNull(cosSigma) - 2 * sinU1 * sinU2 / dart.notNull(cosSqAlpha);
+        if (cos2SigmaM[$isNaN]) {
+          cos2SigmaM = 0.0;
+        }
+        let C = f / 16 * dart.notNull(cosSqAlpha) * (4 + f * (4 - 3 * dart.notNull(cosSqAlpha)));
+        lambdaP = lambda;
+        lambda = l + (1 - C) * f * dart.notNull(sinAlpha) * (dart.notNull(sigma) + C * dart.notNull(sinSigma) * (dart.notNull(cos2SigmaM) + C * dart.notNull(cosSigma) * (-1 + 2 * dart.notNull(cos2SigmaM) * dart.notNull(cos2SigmaM))));
+      } while ((lambda - dart.notNull(lambdaP))[$abs]() > 1e-12 && (maxIterations = maxIterations - 1) > 0);
+      if (maxIterations === 0) {
+        dart.throw(new core.StateError.new("Distance calculation faild to converge!"));
+      }
+      let uSq = dart.notNull(cosSqAlpha) * (a * a - b * b) / (b * b);
+      let A = 1 + uSq / 16384 * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq)));
+      let B = uSq / 1024 * (256 + uSq * (-128 + uSq * (74 - 47 * uSq)));
+      let deltaSigma = B * dart.notNull(sinSigma) * (dart.notNull(cos2SigmaM) + B / 4 * (dart.notNull(cosSigma) * (-1 + 2 * dart.notNull(cos2SigmaM) * dart.notNull(cos2SigmaM)) - B / 6 * dart.notNull(cos2SigmaM) * (-3 + 4 * dart.notNull(sinSigma) * dart.notNull(sinSigma)) * (-3 + 4 * dart.notNull(cos2SigmaM) * dart.notNull(cos2SigmaM))));
+      let dist = b * A * (dart.notNull(sigma) - deltaSigma);
+      return dist;
+    }
+    offset(from, distanceInMeter, bearing) {
+      if (from == null) dart.nullFailed(I[2], 117, 20, "from");
+      if (distanceInMeter == null) dart.nullFailed(I[2], 117, 39, "distanceInMeter");
+      if (bearing == null) dart.nullFailed(I[2], 117, 69, "bearing");
+      let equatorialRadius = 6378137;
+      let latitude = from.latitudeInRad;
+      let longitude = from.longitudeInRad;
+      let alpha1 = latlong.degToRadian(bearing);
+      let sinAlpha1 = math.sin(alpha1);
+      let cosAlpha1 = math.cos(alpha1);
+      let tanU1 = (1 - 0.0033528106647474805) * math.tan(latitude);
+      let cosU1 = 1 / math.sqrt(1 + tanU1 * tanU1);
+      let sinU1 = tanU1 * cosU1;
+      let sigma1 = math.atan2(tanU1, cosAlpha1);
+      let sinAlpha = cosU1 * sinAlpha1;
+      let cosSqAlpha = 1 - sinAlpha * sinAlpha;
+      let dfUSq = cosSqAlpha * (equatorialRadius * equatorialRadius - 6356752.314245 * 6356752.314245) / (6356752.314245 * 6356752.314245);
+      let a = 1 + dfUSq / 16384 * (4096 + dfUSq * (-768 + dfUSq * (320 - 175 * dfUSq)));
+      let b = dfUSq / 1024 * (256 + dfUSq * (-128 + dfUSq * (74 - 47 * dfUSq)));
+      let sigma = dart.notNull(distanceInMeter) / (6356752.314245 * a);
+      let sigmaP = 2 * 3.141592653589793;
+      let sinSigma = 0.0;
+      let cosSigma = 0.0;
+      let cos2SigmaM = 0.0;
+      let deltaSigma = null;
+      let maxIterations = 200;
+      do {
+        cos2SigmaM = math.cos(2 * sigma1 + sigma);
+        sinSigma = math.sin(sigma);
+        cosSigma = math.cos(sigma);
+        deltaSigma = b * sinSigma * (cos2SigmaM + b / 4 * (cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM) - b / 6 * cos2SigmaM * (-3 + 4 * sinSigma * sinSigma) * (-3 + 4 * cos2SigmaM * cos2SigmaM)));
+        sigmaP = sigma;
+        sigma = dart.notNull(distanceInMeter) / (6356752.314245 * a) + dart.notNull(deltaSigma);
+      } while ((sigma - sigmaP)[$abs]() > 1e-12 && (maxIterations = maxIterations - 1) > 0);
+      if (maxIterations === 0) {
+        dart.throw(new core.StateError.new("offset calculation faild to converge!"));
+      }
+      let tmp = sinU1 * sinSigma - cosU1 * cosSigma * cosAlpha1;
+      let lat2 = math.atan2(sinU1 * cosSigma + cosU1 * sinSigma * cosAlpha1, (1 - 0.0033528106647474805) * math.sqrt(sinAlpha * sinAlpha + tmp * tmp));
+      let lambda = math.atan2(sinSigma * sinAlpha1, cosU1 * cosSigma - sinU1 * sinSigma * cosAlpha1);
+      let c = 0.0033528106647474805 / 16 * cosSqAlpha * (4 + 0.0033528106647474805 * (4 - 3 * cosSqAlpha));
+      let l = lambda - (1 - c) * 0.0033528106647474805 * sinAlpha * (sigma + c * sinSigma * (cos2SigmaM + c * cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM)));
+      let lon2 = dart.notNull(longitude) + l;
+      if (lon2 > 3.141592653589793) {
+        lon2 = lon2 - 2 * 3.141592653589793;
+      }
+      if (lon2 < -1 * 3.141592653589793) {
+        lon2 = lon2 + 2 * 3.141592653589793;
+      }
+      return new latlong.LatLng.new(latlong.radianToDeg(lat2), latlong.radianToDeg(lon2));
+    }
+  };
+  (latlong.Vincenty.new = function() {
+    ;
+  }).prototype = latlong.Vincenty.prototype;
+  dart.addTypeTests(latlong.Vincenty);
+  dart.addTypeCaches(latlong.Vincenty);
+  latlong.Vincenty[dart.implements] = () => [latlong.DistanceCalculator];
+  dart.setMethodSignature(latlong.Vincenty, () => ({
+    __proto__: dart.getMethods(latlong.Vincenty.__proto__),
+    distance: dart.fnType(core.double, [latlong.LatLng, latlong.LatLng]),
+    offset: dart.fnType(latlong.LatLng, [latlong.LatLng, core.double, core.double])
+  }));
+  dart.setLibraryUri(latlong.Vincenty, I[0]);
+  var _radius = dart.privateName(latlong, "Distance._radius");
+  var _roundResult = dart.privateName(latlong, "Distance._roundResult");
+  var _calculator = dart.privateName(latlong, "Distance._calculator");
+  var _radius$ = dart.privateName(latlong, "_radius");
+  var _roundResult$ = dart.privateName(latlong, "_roundResult");
+  var _calculator$ = dart.privateName(latlong, "_calculator");
+  var _round = dart.privateName(latlong, "_round");
+  latlong.Distance = class Distance extends core.Object {
+    get [_radius$]() {
+      return this[_radius];
+    }
+    set [_radius$](value) {
+      super[_radius$] = value;
+    }
+    get [_roundResult$]() {
+      return this[_roundResult];
+    }
+    set [_roundResult$](value) {
+      super[_roundResult$] = value;
+    }
+    get [_calculator$]() {
+      return this[_calculator];
+    }
+    set [_calculator$](value) {
+      super[_calculator$] = value;
+    }
+    get radius() {
+      return this[_radius$];
+    }
+    get calculator() {
+      return this[_calculator$];
+    }
+    call(p1, p2) {
+      if (p1 == null) dart.nullFailed(I[3], 72, 28, "p1");
+      if (p2 == null) dart.nullFailed(I[3], 72, 45, "p2");
+      return this.distance(p1, p2);
+    }
+    as(unit, p1, p2) {
+      if (unit == null) dart.nullFailed(I[3], 81, 30, "unit");
+      if (p1 == null) dart.nullFailed(I[3], 81, 49, "p1");
+      if (p2 == null) dart.nullFailed(I[3], 81, 66, "p2");
+      let dist = this[_calculator$].distance(p1, p2);
+      return this[_round](latlong.LengthUnit.Meter.to(unit, dist));
+    }
+    distance(p1, p2) {
+      if (p1 == null) dart.nullFailed(I[3], 90, 32, "p1");
+      if (p2 == null) dart.nullFailed(I[3], 90, 49, "p2");
+      return this[_round](this[_calculator$].distance(p1, p2));
+    }
+    bearing(p1, p2) {
+      if (p1 == null) dart.nullFailed(I[3], 104, 31, "p1");
+      if (p2 == null) dart.nullFailed(I[3], 104, 48, "p2");
+      let diffLongitude = dart.notNull(p2.longitudeInRad) - dart.notNull(p1.longitudeInRad);
+      let y = math.sin(diffLongitude);
+      let x = math.cos(p1.latitudeInRad) * math.tan(p2.latitudeInRad) - math.sin(p1.latitudeInRad) * math.cos(diffLongitude);
+      return latlong.radianToDeg(math.atan2(y, x));
+    }
+    offset(from, distanceInMeter, bearing) {
+      if (from == null) dart.nullFailed(I[3], 130, 24, "from");
+      if (distanceInMeter == null) dart.nullFailed(I[3], 130, 40, "distanceInMeter");
+      if (bearing == null) dart.nullFailed(I[3], 130, 67, "bearing");
+      return this[_calculator$].offset(from, distanceInMeter[$toDouble](), bearing[$toDouble]());
+    }
+    [_round](value) {
+      if (value == null) dart.nullFailed(I[3], 135, 30, "value");
+      return dart.dtest(this[_roundResult$]) ? value[$round]()[$toDouble]() : value;
+    }
+  };
+  (latlong.Distance.new = function(opts) {
+    let roundResult = opts && 'roundResult' in opts ? opts.roundResult : true;
+    if (roundResult == null) dart.nullFailed(I[3], 43, 19, "roundResult");
+    let calculator = opts && 'calculator' in opts ? opts.calculator : C[0] || CT.C0;
+    if (calculator == null) dart.nullFailed(I[3], 44, 32, "calculator");
+    this[_radius] = 6378137;
+    this[_roundResult] = roundResult;
+    this[_calculator] = calculator;
+    ;
+  }).prototype = latlong.Distance.prototype;
+  (latlong.Distance.withRadius = function(radius, opts) {
+    if (radius == null) dart.nullFailed(I[3], 50, 36, "radius");
+    let roundResult = opts && 'roundResult' in opts ? opts.roundResult : true;
+    if (roundResult == null) dart.nullFailed(I[3], 51, 19, "roundResult");
+    let calculator = opts && 'calculator' in opts ? opts.calculator : C[0] || CT.C0;
+    if (calculator == null) dart.nullFailed(I[3], 52, 32, "calculator");
+    this[_radius] = radius;
+    this[_roundResult] = roundResult;
+    this[_calculator] = calculator;
+    if (dart.notNull(radius) <= 0) {
+      dart.throw(new core.ArgumentError.value(radius, "radius", "Radius must be greater than 0"));
+    }
+  }).prototype = latlong.Distance.prototype;
+  dart.addTypeTests(latlong.Distance);
+  dart.addTypeCaches(latlong.Distance);
+  latlong.Distance[dart.implements] = () => [latlong.DistanceCalculator];
+  dart.setMethodSignature(latlong.Distance, () => ({
+    __proto__: dart.getMethods(latlong.Distance.__proto__),
+    call: dart.fnType(core.double, [latlong.LatLng, latlong.LatLng]),
+    as: dart.fnType(core.double, [latlong.LengthUnit, latlong.LatLng, latlong.LatLng]),
+    distance: dart.fnType(core.double, [latlong.LatLng, latlong.LatLng]),
+    bearing: dart.fnType(core.double, [latlong.LatLng, latlong.LatLng]),
+    offset: dart.fnType(latlong.LatLng, [latlong.LatLng, core.num, core.num]),
+    [_round]: dart.fnType(core.double, [core.double])
+  }));
+  dart.setGetterSignature(latlong.Distance, () => ({
+    __proto__: dart.getGetters(latlong.Distance.__proto__),
+    radius: core.double,
+    calculator: latlong.DistanceCalculator
+  }));
+  dart.setLibraryUri(latlong.Distance, I[0]);
+  dart.setFieldSignature(latlong.Distance, () => ({
+    __proto__: dart.getFields(latlong.Distance.__proto__),
+    [_radius$]: dart.finalFieldType(core.double),
+    [_roundResult$]: dart.finalFieldType(dart.dynamic),
+    [_calculator$]: dart.finalFieldType(latlong.DistanceCalculator)
+  }));
+  latlong.DistanceVincenty = class DistanceVincenty extends latlong.Distance {};
+  (latlong.DistanceVincenty.new = function(opts) {
+    let roundResult = opts && 'roundResult' in opts ? opts.roundResult : true;
+    if (roundResult == null) dart.nullFailed(I[3], 143, 38, "roundResult");
+    latlong.DistanceVincenty.__proto__.new.call(this, {roundResult: roundResult, calculator: C[0] || CT.C0});
+    ;
+  }).prototype = latlong.DistanceVincenty.prototype;
+  (latlong.DistanceVincenty.withRadius = function(radius, opts) {
+    if (radius == null) dart.nullFailed(I[3], 147, 44, "radius");
+    let roundResult = opts && 'roundResult' in opts ? opts.roundResult : true;
+    if (roundResult == null) dart.nullFailed(I[3], 148, 19, "roundResult");
+    latlong.DistanceVincenty.__proto__.withRadius.call(this, radius, {roundResult: roundResult, calculator: C[0] || CT.C0});
+    if (dart.notNull(radius) <= 0) {
+      dart.throw(new core.ArgumentError.value(radius, "radius", "Radius must be greater than 0"));
+    }
+  }).prototype = latlong.DistanceVincenty.prototype;
+  dart.addTypeTests(latlong.DistanceVincenty);
+  dart.addTypeCaches(latlong.DistanceVincenty);
+  dart.setLibraryUri(latlong.DistanceVincenty, I[0]);
+  latlong.DistanceHaversine = class DistanceHaversine extends latlong.Distance {};
+  (latlong.DistanceHaversine.new = function(opts) {
+    let roundResult = opts && 'roundResult' in opts ? opts.roundResult : true;
+    if (roundResult == null) dart.nullFailed(I[3], 162, 39, "roundResult");
+    latlong.DistanceHaversine.__proto__.new.call(this, {roundResult: roundResult, calculator: C[1] || CT.C1});
+    ;
+  }).prototype = latlong.DistanceHaversine.prototype;
+  (latlong.DistanceHaversine.withRadius = function(radius, opts) {
+    if (radius == null) dart.nullFailed(I[3], 166, 45, "radius");
+    let roundResult = opts && 'roundResult' in opts ? opts.roundResult : true;
+    if (roundResult == null) dart.nullFailed(I[3], 167, 19, "roundResult");
+    latlong.DistanceHaversine.__proto__.withRadius.call(this, radius, {roundResult: roundResult, calculator: C[1] || CT.C1});
+    if (dart.notNull(radius) <= 0) {
+      dart.throw(new core.ArgumentError.value(radius, "radius", "Radius must be greater than 0"));
+    }
+  }).prototype = latlong.DistanceHaversine.prototype;
+  dart.addTypeTests(latlong.DistanceHaversine);
+  dart.addTypeCaches(latlong.DistanceHaversine);
+  dart.setLibraryUri(latlong.DistanceHaversine, I[0]);
+  var _latitude$ = dart.privateName(latlong, "_latitude");
+  var _longitude$ = dart.privateName(latlong, "_longitude");
+  latlong.LatLng = class LatLng extends core.Object {
+    set latitude(value) {
+      if (value == null) dart.nullFailed(I[4], 42, 29, "value");
+      if (dart.notNull(value) < -90 || dart.notNull(value) > 90) {
+        dart.throw(new core.ArgumentError.value(value, "value", "Latitude must be between -90 and 90 degrees"));
+      }
+      this[_latitude$] = value;
+    }
+    get latitude() {
+      return this[_latitude$];
+    }
+    set longitude(value) {
+      if (value == null) dart.nullFailed(I[4], 52, 30, "value");
+      if (dart.notNull(value) < -180 || dart.notNull(value) > 180) {
+        dart.throw(new core.ArgumentError.value(value, "value", "Longitude must be between -180 and 180 degrees"));
+      }
+      this[_longitude$] = value;
+    }
+    get longitude() {
+      return this[_longitude$];
+    }
+    get latitudeInRad() {
+      return latlong.degToRadian(this.latitude);
+    }
+    get longitudeInRad() {
+      return latlong.degToRadian(this[_longitude$]);
+    }
+    toString() {
+      return "LatLng(latitude:" + dart.str(number_format.NumberFormat.new("0.0#####").format(this.latitude)) + ", " + "longitude:" + dart.str(number_format.NumberFormat.new("0.0#####").format(this.longitude)) + ")";
+    }
+    toSexagesimal() {
+      let latDirection = dart.notNull(this.latitude) >= 0 ? "N" : "S";
+      let lonDirection = dart.notNull(this.longitude) >= 0 ? "E" : "W";
+      return dart.str(latlong.decimal2sexagesimal(this.latitude)) + " " + latDirection + ", " + dart.str(latlong.decimal2sexagesimal(this.longitude)) + " " + lonDirection;
+    }
+    get hashCode() {
+      return dart.hashCode(this.latitude) + dart.hashCode(this.longitude);
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return latlong.LatLng.is(other) && this.latitude == other.latitude && this.longitude == other.longitude;
+    }
+    round(opts) {
+      let decimals = opts && 'decimals' in opts ? opts.decimals : 6;
+      if (decimals == null) dart.nullFailed(I[4], 93, 27, "decimals");
+      return new latlong.LatLng.new(this[_round](this.latitude, {decimals: decimals}), this[_round](this.longitude, {decimals: decimals}));
+    }
+    [_round](value, opts) {
+      if (value == null) dart.nullFailed(I[4], 100, 30, "value");
+      let decimals = opts && 'decimals' in opts ? opts.decimals : 6;
+      if (decimals == null) dart.nullFailed(I[4], 100, 48, "decimals");
+      return (dart.notNull(value) * math.pow(10, decimals))[$round]() / math.pow(10, decimals);
+    }
+  };
+  (latlong.LatLng.new = function(_latitude, _longitude) {
+    if (_latitude == null) dart.nullFailed(I[4], 32, 15, "_latitude");
+    if (_longitude == null) dart.nullFailed(I[4], 32, 31, "_longitude");
+    this[_latitude$] = _latitude;
+    this[_longitude$] = _longitude;
+    if (dart.notNull(this[_latitude$]) < -90 || dart.notNull(this[_latitude$]) > 90) {
+      dart.throw(new core.ArgumentError.value(this[_latitude$], "_latitude", "Latitude must be between -90 and 90 degrees"));
+    } else if (dart.notNull(this[_longitude$]) < -180 || dart.notNull(this[_longitude$]) > 180) {
+      dart.throw(new core.ArgumentError.value(this[_longitude$], "_longitude", "Longitude must be between -180 and 180 degrees"));
+    }
+  }).prototype = latlong.LatLng.prototype;
+  dart.addTypeTests(latlong.LatLng);
+  dart.addTypeCaches(latlong.LatLng);
+  dart.setMethodSignature(latlong.LatLng, () => ({
+    __proto__: dart.getMethods(latlong.LatLng.__proto__),
+    toSexagesimal: dart.fnType(core.String, []),
+    round: dart.fnType(latlong.LatLng, [], {decimals: core.int}, {}),
+    [_round]: dart.fnType(core.double, [core.double], {decimals: core.int}, {})
+  }));
+  dart.setGetterSignature(latlong.LatLng, () => ({
+    __proto__: dart.getGetters(latlong.LatLng.__proto__),
+    latitude: core.double,
+    longitude: core.double,
+    latitudeInRad: core.double,
+    longitudeInRad: core.double
+  }));
+  dart.setSetterSignature(latlong.LatLng, () => ({
+    __proto__: dart.getSetters(latlong.LatLng.__proto__),
+    latitude: core.double,
+    longitude: core.double
+  }));
+  dart.setLibraryUri(latlong.LatLng, I[0]);
+  dart.setFieldSignature(latlong.LatLng, () => ({
+    __proto__: dart.getFields(latlong.LatLng.__proto__),
+    [_latitude$]: dart.fieldType(core.double),
+    [_longitude$]: dart.fieldType(core.double)
+  }));
+  dart.defineExtensionMethods(latlong.LatLng, ['toString', '_equals']);
+  dart.defineExtensionAccessors(latlong.LatLng, ['hashCode']);
+  var scaleFactor$ = dart.privateName(latlong, "LengthUnit.scaleFactor");
+  latlong.LengthUnit = class LengthUnit extends core.Object {
+    get scaleFactor() {
+      return this[scaleFactor$];
+    }
+    set scaleFactor(value) {
+      super.scaleFactor = value;
+    }
+    to(unit, value) {
+      if (unit == null) dart.nullFailed(I[5], 33, 30, "unit");
+      if (value == null) dart.nullFailed(I[5], 33, 49, "value");
+      if (unit.scaleFactor == this.scaleFactor) {
+        return value;
+      }
+      let primaryValue = dart.notNull(value) / dart.notNull(this.scaleFactor);
+      return primaryValue * dart.notNull(unit.scaleFactor);
+    }
+  };
+  (latlong.LengthUnit.new = function(scaleFactor) {
+    if (scaleFactor == null) dart.nullFailed(I[5], 31, 25, "scaleFactor");
+    this[scaleFactor$] = scaleFactor;
+    ;
+  }).prototype = latlong.LengthUnit.prototype;
+  dart.addTypeTests(latlong.LengthUnit);
+  dart.addTypeCaches(latlong.LengthUnit);
+  dart.setMethodSignature(latlong.LengthUnit, () => ({
+    __proto__: dart.getMethods(latlong.LengthUnit.__proto__),
+    to: dart.fnType(core.double, [latlong.LengthUnit, core.double])
+  }));
+  dart.setLibraryUri(latlong.LengthUnit, I[0]);
+  dart.setFieldSignature(latlong.LengthUnit, () => ({
+    __proto__: dart.getFields(latlong.LengthUnit.__proto__),
+    scaleFactor: dart.finalFieldType(core.double)
+  }));
+  dart.defineLazy(latlong.LengthUnit, {
+    /*latlong.LengthUnit.Millimeter*/get Millimeter() {
+      return C[2] || CT.C2;
+    },
+    /*latlong.LengthUnit.Centimeter*/get Centimeter() {
+      return C[3] || CT.C3;
+    },
+    /*latlong.LengthUnit.Meter*/get Meter() {
+      return C[4] || CT.C4;
+    },
+    /*latlong.LengthUnit.Kilometer*/get Kilometer() {
+      return C[5] || CT.C5;
+    },
+    /*latlong.LengthUnit.Mile*/get Mile() {
+      return C[6] || CT.C6;
+    }
+  }, false);
+  var _distance = dart.privateName(latlong, "_distance");
+  var _coordinates = dart.privateName(latlong, "_coordinates");
+  var _latLngFactory = dart.privateName(latlong, "_latLngFactory");
+  var _createSpline = dart.privateName(latlong, "_createSpline");
+  var _pointToLatLng = dart.privateName(latlong, "_pointToLatLng");
+  const _is_Path_default = Symbol('_is_Path_default');
+  latlong.Path$ = dart.generic(T => {
+    var JSArrayOfT = () => (JSArrayOfT = dart.constFn(_interceptors.JSArray$(T)))();
+    var ListOfT = () => (ListOfT = dart.constFn(core.List$(T)))();
+    var TTovoid = () => (TTovoid = dart.constFn(dart.fnType(dart.void, [T])))();
+    class Path extends core.Object {
+      get coordinates() {
+        return this[_coordinates];
+      }
+      clear() {
+        return this[_coordinates][$clear]();
+      }
+      add(value) {
+        T.as(value);
+        if (value == null) dart.nullFailed(I[6], 69, 20, "value");
+        return this[_coordinates][$add](value);
+      }
+      addAll(values) {
+        ListOfT().as(values);
+        if (values == null) dart.nullFailed(I[6], 74, 29, "values");
+        return this[_coordinates][$addAll](values);
+      }
+      get first() {
+        return this[_coordinates][$first];
+      }
+      get last() {
+        return this[_coordinates][$last];
+      }
+      equalize(distanceInMeterPerTime, opts) {
+        let t1, t0, t1$, t0$, t1$0, t0$0, t1$1, t0$1;
+        if (distanceInMeterPerTime == null) dart.nullFailed(I[6], 94, 30, "distanceInMeterPerTime");
+        let smoothPath = opts && 'smoothPath' in opts ? opts.smoothPath : true;
+        if (smoothPath == null) dart.nullFailed(I[6], 95, 19, "smoothPath");
+        if (dart.notNull(distanceInMeterPerTime) <= 0) {
+          dart.throw(new core.ArgumentError.value(distanceInMeterPerTime, "distanceInMeterPerTime", "Distance must be greater than 0"));
+        }
+        if (!(dart.test(smoothPath) && dart.notNull(this[_coordinates][$length]) >= 3 || !dart.test(smoothPath) && dart.notNull(this[_coordinates][$length]) >= 2)) {
+          dart.throw(new core.ArgumentError.value(smoothPath, "smoothPath", "At least " + dart.str(dart.test(smoothPath) ? 3 : 2) + " coordinates are needed to create the steps in between"));
+        }
+        let stepDistance = dart.test(smoothPath) ? dart.notNull(distanceInMeterPerTime) * 2.0 : distanceInMeterPerTime[$toDouble]();
+        let baseLength = this.distance;
+        if (dart.notNull(baseLength) < stepDistance) {
+          dart.throw(new core.ArgumentError.new("Path distance must be at least " + dart.str(stepDistance) + "mn (step distance) but was " + dart.str(baseLength)));
+        }
+        if (stepDistance > dart.notNull(baseLength) / 2) {
+          core.print("Warning: Equalizing the path (L: " + dart.str(baseLength) + ") with a key-frame distance of " + dart.str(stepDistance) + " leads to" + "weired results. Turn of path smooting.");
+        }
+        if (baseLength === stepDistance) {
+          return new (T$.PathOfLatLng()).from(T$.JSArrayOfLatLng().of([this[_coordinates][$first], this[_coordinates][$last]]));
+        }
+        let tempCoordinates = ListOfT().from(this[_coordinates]);
+        let path = new (T$.PathOfLatLng()).new();
+        let remainingSteps = 0.0;
+        let bearing = null;
+        path.add(tempCoordinates[$first]);
+        let baseStep = tempCoordinates[$first];
+        for (let index = 0; index < dart.notNull(this.coordinates[$length]) - 1; index = index + 1) {
+          let distance = (t0 = tempCoordinates[$_get](index), t1 = tempCoordinates[$_get](index + 1), this[_distance].call(t0, t1));
+          bearing = this[_distance].bearing(tempCoordinates[$_get](index), tempCoordinates[$_get](index + 1));
+          if (remainingSteps <= dart.notNull(distance) || stepDistance - remainingSteps <= dart.notNull(distance)) {
+            let firstStepPos = stepDistance - remainingSteps;
+            let steps = (dart.notNull(distance) - firstStepPos) / stepDistance + 1;
+            let fullSteps = steps[$toInt]();
+            remainingSteps = dart.notNull(latlong.round(fullSteps > 0 ? steps[$modulo](fullSteps) : steps, {decimals: 6})) * stepDistance;
+            baseStep = tempCoordinates[$_get](index);
+            for (let stepCounter = 0; stepCounter < fullSteps; stepCounter = stepCounter + 1) {
+              let tempStep = this[_distance].offset(baseStep, firstStepPos, bearing);
+              let nextStep = (t0$ = tempStep.latitude, t1$ = tempStep.longitude, this[_latLngFactory](t0$, t1$));
+              path.add(nextStep);
+              firstStepPos = firstStepPos + stepDistance;
+              if (dart.test(smoothPath)) {
+                let spline = null;
+                if (path.nrOfCoordinates === 3) {
+                  spline = this[_createSpline](path._get(0), path._get(0), path._get(1), path._get(2));
+                  path.coordinates[$insert](1, this[_pointToLatLng](spline.percentage(50)));
+                } else if (dart.notNull(path.nrOfCoordinates) > 3) {
+                  let baseIndex = dart.notNull(path.nrOfCoordinates) - 1;
+                  spline = this[_createSpline](path._get(baseIndex - 3), path._get(baseIndex - 2), path._get(baseIndex - 1), path._get(baseIndex));
+                  path.coordinates[$insert](baseIndex - 1, this[_pointToLatLng](spline.percentage(50)));
+                }
+              }
+            }
+          } else {
+            remainingSteps = remainingSteps + dart.notNull(distance);
+          }
+        }
+        if (!dart.equals(baseStep.round(), tempCoordinates[$last].round()) && !dart.equals(baseStep.round(), tempCoordinates[$first].round()) && dart.notNull(latlong.round((t0$0 = baseStep, t1$0 = tempCoordinates[$last], this[_distance].call(t0$0, t1$0)))) > 1) {
+          path.add(tempCoordinates[$last]);
+        }
+        if (dart.test(smoothPath)) {
+          let baseIndex = dart.notNull(path.nrOfCoordinates) - 1;
+          if (baseIndex > 3) {
+            let spline = this[_createSpline](path._get(baseIndex - 3), path._get(baseIndex - 2), path._get(baseIndex - 1), path._get(baseIndex - 0));
+            path.coordinates[$insert](baseIndex - 1, this[_pointToLatLng](spline.percentage(50)));
+          }
+          baseIndex = dart.notNull(path.nrOfCoordinates) - 1;
+          if (dart.notNull((t0$1 = path._get(baseIndex - 1), t1$1 = path._get(baseIndex), this[_distance].call(t0$1, t1$1))) >= stepDistance) {
+            let spline = this[_createSpline](path._get(baseIndex - 1), path._get(baseIndex - 1), path._get(baseIndex - 0), path._get(baseIndex - 0));
+            path.coordinates[$insert](baseIndex, this[_pointToLatLng](spline.percentage(50)));
+          }
+        }
+        return path;
+      }
+      get distance() {
+        let t1, t0;
+        let tempCoordinates = ListOfT().from(this[_coordinates]);
+        let length = 0.0;
+        for (let index = 0; index < dart.notNull(this.coordinates[$length]) - 1; index = index + 1) {
+          length = length + dart.notNull((t0 = tempCoordinates[$_get](index), t1 = tempCoordinates[$_get](index + 1), this[_distance].call(t0, t1)));
+        }
+        return latlong.round(length);
+      }
+      get center() {
+        let t1, t0;
+        if (dart.test(this.coordinates[$isEmpty])) {
+          dart.throw(new core.AssertionError.new("Coordinates must not be empty!"));
+        }
+        let X = 0.0;
+        let Y = 0.0;
+        let Z = 0.0;
+        let lat = null;
+        let lon = null;
+        let hyp = null;
+        this.coordinates[$forEach](dart.fn(coordinate => {
+          if (coordinate == null) dart.nullFailed(I[6], 259, 34, "coordinate");
+          lat = coordinate.latitudeInRad;
+          lon = coordinate.longitudeInRad;
+          X = X + math.cos(lat) * math.cos(lon);
+          Y = Y + math.cos(lat) * math.sin(lon);
+          Z = Z + math.sin(lat);
+        }, TTovoid()));
+        let nrOfCoordinates = this.coordinates[$length];
+        X = X / dart.notNull(nrOfCoordinates);
+        Y = Y / dart.notNull(nrOfCoordinates);
+        Z = Z / dart.notNull(nrOfCoordinates);
+        lon = math.atan2(Y, X);
+        hyp = math.sqrt(X * X + Y * Y);
+        lat = math.atan2(Z, hyp);
+        t0 = latlong.round(latlong.radianToDeg(lat));
+        t1 = latlong.round(latlong.radianToDeg(lon));
+        return this[_latLngFactory](t0, t1);
+      }
+      get nrOfCoordinates() {
+        return this[_coordinates][$length];
+      }
+      _get(index) {
+        if (index == null) dart.nullFailed(I[6], 292, 27, "index");
+        return this[_coordinates][$elementAt](index);
+      }
+      [_createSpline](p0, p1, p2, p3) {
+        if (p0 == null) dart.nullFailed(I[6], 298, 20, "p0");
+        if (p1 == null) dart.nullFailed(I[6], 298, 37, "p1");
+        if (p2 == null) dart.nullFailed(I[6], 298, 54, "p2");
+        if (p3 == null) dart.nullFailed(I[6], 298, 71, "p3");
+        return new (T$.CatmullRomSpline2DOfdouble()).new(new spline.Point2D.new(p0.latitude, p0.longitude), new spline.Point2D.new(p1.latitude, p1.longitude), new spline.Point2D.new(p2.latitude, p2.longitude), new spline.Point2D.new(p3.latitude, p3.longitude));
+      }
+      [_pointToLatLng](point) {
+        let t1, t0;
+        if (point == null) dart.nullFailed(I[6], 307, 39, "point");
+        t0 = point.x;
+        t1 = point.y;
+        return this[_latLngFactory](t0, t1);
+      }
+    }
+    (Path.new = function(opts) {
+      let factory = opts && 'factory' in opts ? opts.factory : C[7] || CT.C7;
+      if (factory == null) dart.nullFailed(I[6], 54, 29, "factory");
+      this[_distance] = C[8] || CT.C8;
+      this[_coordinates] = JSArrayOfT().of([]);
+      this[_latLngFactory] = factory;
+      ;
+    }).prototype = Path.prototype;
+    (Path.from = function(coordinates, opts) {
+      if (coordinates == null) dart.nullFailed(I[6], 58, 31, "coordinates");
+      let factory = opts && 'factory' in opts ? opts.factory : C[7] || CT.C7;
+      if (factory == null) dart.nullFailed(I[6], 59, 28, "factory");
+      this[_distance] = C[8] || CT.C8;
+      this[_coordinates] = ListOfT().from(coordinates);
+      this[_latLngFactory] = factory;
+      ;
+    }).prototype = Path.prototype;
+    dart.addTypeTests(Path);
+    Path.prototype[_is_Path_default] = true;
+    dart.addTypeCaches(Path);
+    dart.setMethodSignature(Path, () => ({
+      __proto__: dart.getMethods(Path.__proto__),
+      clear: dart.fnType(dart.void, []),
+      add: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      addAll: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      equalize: dart.fnType(latlong.Path$(latlong.LatLng), [core.double], {smoothPath: core.bool}, {}),
+      _get: dart.fnType(T, [core.int]),
+      [_createSpline]: dart.fnType(spline.CatmullRomSpline2D$(core.double), [latlong.LatLng, latlong.LatLng, latlong.LatLng, latlong.LatLng]),
+      [_pointToLatLng]: dart.fnType(latlong.LatLng, [spline.Point2D])
+    }));
+    dart.setGetterSignature(Path, () => ({
+      __proto__: dart.getGetters(Path.__proto__),
+      coordinates: core.List$(T),
+      first: T,
+      last: T,
+      distance: core.double,
+      center: latlong.LatLng,
+      nrOfCoordinates: core.int
+    }));
+    dart.setLibraryUri(Path, I[0]);
+    dart.setFieldSignature(Path, () => ({
+      __proto__: dart.getFields(Path.__proto__),
+      [_coordinates]: dart.finalFieldType(core.List$(T)),
+      [_distance]: dart.finalFieldType(latlong.Distance),
+      [_latLngFactory]: dart.finalFieldType(dart.fnType(latlong.LatLng, [core.double, core.double]))
+    }));
+    return Path;
+  });
+  latlong.Path = latlong.Path$();
+  dart.addTypeTests(latlong.Path, _is_Path_default);
+  var radius$ = dart.privateName(latlong, "Circle.radius");
+  var center$ = dart.privateName(latlong, "Circle.center");
+  latlong.Circle = class Circle extends core.Object {
+    get radius() {
+      return this[radius$];
+    }
+    set radius(value) {
+      super.radius = value;
+    }
+    get center() {
+      return this[center$];
+    }
+    set center(value) {
+      super.center = value;
+    }
+    isPointInside(point) {
+      if (point == null) dart.nullFailed(I[7], 47, 35, "point");
+      let distance = new latlong.Distance.new({calculator: this[_calculator$]});
+      let dist = distance.call(this.center, point);
+      return dart.notNull(dist) <= dart.notNull(this.radius);
+    }
+  };
+  (latlong.Circle.new = function(center, radius, opts) {
+    if (center == null) dart.nullFailed(I[7], 32, 21, "center");
+    if (radius == null) dart.nullFailed(I[7], 32, 34, "radius");
+    let calculator = opts && 'calculator' in opts ? opts.calculator : C[0] || CT.C0;
+    if (calculator == null) dart.nullFailed(I[7], 33, 33, "calculator");
+    this[center$] = center;
+    this[radius$] = radius;
+    this[_calculator$] = calculator;
+    ;
+  }).prototype = latlong.Circle.prototype;
+  dart.addTypeTests(latlong.Circle);
+  dart.addTypeCaches(latlong.Circle);
+  dart.setMethodSignature(latlong.Circle, () => ({
+    __proto__: dart.getMethods(latlong.Circle.__proto__),
+    isPointInside: dart.fnType(core.bool, [latlong.LatLng])
+  }));
+  dart.setLibraryUri(latlong.Circle, I[0]);
+  dart.setFieldSignature(latlong.Circle, () => ({
+    __proto__: dart.getFields(latlong.Circle.__proto__),
+    radius: dart.finalFieldType(core.double),
+    center: dart.finalFieldType(latlong.LatLng),
+    [_calculator$]: dart.finalFieldType(latlong.DistanceCalculator)
+  }));
+  latlong.degToRadian = function degToRadian(deg) {
+    if (deg == null) dart.nullFailed(I[8], 76, 33, "deg");
+    return dart.notNull(deg) * (3.141592653589793 / 180.0);
+  };
+  latlong.radianToDeg = function radianToDeg(rad) {
+    if (rad == null) dart.nullFailed(I[8], 79, 33, "rad");
+    return dart.notNull(rad) * (180.0 / 3.141592653589793);
+  };
+  latlong.round = function round(value, opts) {
+    if (value == null) dart.nullFailed(I[8], 82, 27, "value");
+    let decimals = opts && 'decimals' in opts ? opts.decimals : 6;
+    if (decimals == null) dart.nullFailed(I[8], 82, 45, "decimals");
+    return (dart.notNull(value) * math.pow(10, decimals))[$round]() / math.pow(10, decimals);
+  };
+  latlong.normalizeBearing = function normalizeBearing(bearing) {
+    if (bearing == null) dart.nullFailed(I[8], 87, 38, "bearing");
+    return (dart.notNull(bearing) + 360)[$modulo](360);
+  };
+  latlong.decimal2sexagesimal = function decimal2sexagesimal(dec) {
+    if (dec == null) dart.nullFailed(I[8], 97, 41, "dec");
+    let buf = new core.StringBuffer.new();
+    let absDec = dec[$abs]();
+    let deg = absDec[$floor]();
+    buf.write(deg[$toString]() + "°");
+    let mins = (absDec - deg) * 60.0;
+    let min = mins[$round]();
+    buf.write(" " + dart.notNull(latlong.zeroPad(min)) + "'");
+    let secs = (mins - mins[$floorToDouble]()) * 60.0;
+    let sec = secs[$round]();
+    let frac = ((secs - secs[$floorToDouble]()) * 100.0)[$round]();
+    buf.write(" " + dart.notNull(latlong.zeroPad(sec)) + "." + dart.notNull(latlong.zeroPad(frac)) + "\"");
+    return buf.toString();
+  };
+  latlong.zeroPad = function zeroPad(number) {
+    if (number == null) dart.nullFailed(I[8], 117, 20, "number");
+    return (dart.notNull(number) < 10 ? "0" : "") + dart.toString(number);
+  };
+  latlong._defaultLatLngFactory = function _defaultLatLngFactory(latitude, longitude) {
+    if (latitude == null) dart.nullFailed(I[6], 32, 43, "latitude");
+    if (longitude == null) dart.nullFailed(I[6], 32, 66, "longitude");
+    return new latlong.LatLng.new(latitude, longitude);
+  };
+  dart.defineLazy(latlong, {
+    /*latlong.equatorRadius*/get equatorRadius() {
+      return 6378137;
+    },
+    /*latlong.polarRadius*/get polarRadius() {
+      return 6356752.314245;
+    },
+    /*latlong.flattening*/get flattening() {
+      return 0.0033528106647474805;
+    },
+    /*latlong.earthRadius*/get earthRadius() {
+      return 6378137;
+    },
+    /*latlong.pi*/get pi() {
+      return 3.141592653589793;
+    }
+  }, false);
+  dart.trackLibraries("packages/latlong2/latlong.dart", {
+    "package:latlong2/latlong.dart": latlong
+  }, {
+    "package:latlong2/latlong.dart": ["latlong/interfaces.dart", "latlong/calculator/Haversine.dart", "latlong/calculator/Vincenty.dart", "latlong/Distance.dart", "latlong/LatLng.dart", "latlong/LengthUnit.dart", "latlong/Path.dart", "latlong/Circle.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["latlong/interfaces.dart","latlong/calculator/Haversine.dart","latlong/calculator/Vincenty.dart","latlong/Distance.dart","latlong/LatLng.dart","latlong/LengthUnit.dart","latlong/Path.dart","latlong/Circle.dart","latlong.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/latlong2/latlong.dart.lib.js"}');
+  // Exports:
+  return {
+    latlong: latlong
+  };
+}));
+
+//# sourceMappingURL=latlong.dart.lib.js.map

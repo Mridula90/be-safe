@@ -1,0 +1,1269 @@
+define(['dart_sdk', 'packages/just_audio_platform_interface/method_channel_just_audio.dart', 'packages/flutter/src/services/system_channels.dart'], (function load__packages__just_audio_web__just_audio_web_dart(dart_sdk, packages__just_audio_platform_interface__method_channel_just_audio$46dart, packages__flutter__src__services__system_channels$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const async = dart_sdk.async;
+  const html = dart_sdk.html;
+  const _interceptors = dart_sdk._interceptors;
+  const math = dart_sdk.math;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const just_audio_platform_interface = packages__just_audio_platform_interface__method_channel_just_audio$46dart.just_audio_platform_interface;
+  const message_codec = packages__flutter__src__services__system_channels$46dart.src__services__message_codec;
+  var just_audio_web = Object.create(dart.library);
+  var $containsKey = dartx.containsKey;
+  var $_set = dartx._set;
+  var $_get = dartx._get;
+  var $remove = dartx.remove;
+  var $addEventListener = dartx.addEventListener;
+  var $length = dartx.length;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $isFinite = dartx.isFinite;
+  var $toInt = dartx.toInt;
+  var $removeAttribute = dartx.removeAttribute;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $runtimeType = dartx.runtimeType;
+  var $play = dartx.play;
+  var $expand = dartx.expand;
+  var $add = dartx.add;
+  var $addAll = dartx.addAll;
+  var $insertAll = dartx.insertAll;
+  var $removeRange = dartx.removeRange;
+  var $removeAt = dartx.removeAt;
+  var $insert = dartx.insert;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    IdentityMapOfString$JustAudioPlayer: () => (T.IdentityMapOfString$JustAudioPlayer = dart.constFn(_js_helper.IdentityMap$(core.String, just_audio_web.JustAudioPlayer)))(),
+    StreamControllerOfPlaybackEventMessage: () => (T.StreamControllerOfPlaybackEventMessage = dart.constFn(async.StreamController$(just_audio_platform_interface.PlaybackEventMessage)))(),
+    StreamControllerOfPlayerDataMessage: () => (T.StreamControllerOfPlayerDataMessage = dart.constFn(async.StreamController$(just_audio_platform_interface.PlayerDataMessage)))(),
+    IdentityMapOfString$AudioSourcePlayer: () => (T.IdentityMapOfString$AudioSourcePlayer = dart.constFn(_js_helper.IdentityMap$(core.String, just_audio_web.AudioSourcePlayer)))(),
+    EventToNull: () => (T.EventToNull = dart.constFn(dart.fnType(core.Null, [html.Event])))(),
+    FutureOfNull: () => (T.FutureOfNull = dart.constFn(async.Future$(core.Null)))(),
+    EventToFutureOfNull: () => (T.EventToFutureOfNull = dart.constFn(dart.fnType(T.FutureOfNull(), [html.Event])))(),
+    ListOfint: () => (T.ListOfint = dart.constFn(core.List$(core.int)))(),
+    intToint: () => (T.intToint = dart.constFn(dart.fnType(core.int, [core.int])))(),
+    DurationN: () => (T.DurationN = dart.constFn(dart.nullable(core.Duration)))(),
+    AudioSourceMessageTovoid: () => (T.AudioSourceMessageTovoid = dart.constFn(dart.fnType(dart.void, [just_audio_platform_interface.AudioSourceMessage])))(),
+    ConcatenatingAudioSourcePlayerN: () => (T.ConcatenatingAudioSourcePlayerN = dart.constFn(dart.nullable(just_audio_web.ConcatenatingAudioSourcePlayer)))(),
+    AudioSourceMessageToAudioSourcePlayer: () => (T.AudioSourceMessageToAudioSourcePlayer = dart.constFn(dart.fnType(just_audio_web.AudioSourcePlayer, [just_audio_platform_interface.AudioSourceMessage])))(),
+    JSArrayOfIndexedAudioSourcePlayer: () => (T.JSArrayOfIndexedAudioSourcePlayer = dart.constFn(_interceptors.JSArray$(just_audio_web.IndexedAudioSourcePlayer)))(),
+    JSArrayOfint: () => (T.JSArrayOfint = dart.constFn(_interceptors.JSArray$(core.int)))(),
+    ListOfIndexedAudioSourcePlayer: () => (T.ListOfIndexedAudioSourcePlayer = dart.constFn(core.List$(just_audio_web.IndexedAudioSourcePlayer)))(),
+    AudioSourcePlayerToListOfIndexedAudioSourcePlayer: () => (T.AudioSourcePlayerToListOfIndexedAudioSourcePlayer = dart.constFn(dart.fnType(T.ListOfIndexedAudioSourcePlayer(), [just_audio_web.AudioSourcePlayer])))(),
+    JSArrayOfListOfint: () => (T.JSArrayOfListOfint = dart.constFn(_interceptors.JSArray$(T.ListOfint())))(),
+    CompleterOfClipInterruptReason: () => (T.CompleterOfClipInterruptReason = dart.constFn(async.Completer$(just_audio_web.ClipInterruptReason)))(),
+    ClipInterruptReasonL: () => (T.ClipInterruptReasonL = dart.constFn(dart.legacy(just_audio_web.ClipInterruptReason)))(),
+    ListOfAudioSourcePlayer: () => (T.ListOfAudioSourcePlayer = dart.constFn(core.List$(just_audio_web.AudioSourcePlayer)))(),
+    intToAudioSourcePlayer: () => (T.intToAudioSourcePlayer = dart.constFn(dart.fnType(just_audio_web.AudioSourcePlayer, [core.int])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: just_audio_web.ClipInterruptReason.prototype,
+        [_name$]: "ClipInterruptReason.end",
+        index: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: just_audio_web.ClipInterruptReason.prototype,
+        [_name$]: "ClipInterruptReason.pause",
+        index: 1
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: just_audio_web.ClipInterruptReason.prototype,
+        [_name$]: "ClipInterruptReason.seek",
+        index: 2
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: just_audio_web.ClipInterruptReason.prototype,
+        [_name$]: "ClipInterruptReason.simultaneous",
+        index: 3
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3], T.ClipInterruptReasonL());
+    }
+  }, false);
+  var C = Array(5).fill(void 0);
+  var I = [
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/just_audio_web-0.4.1/lib/just_audio_web.dart",
+    "package:just_audio_web/just_audio_web.dart"
+  ];
+  var players = dart.privateName(just_audio_web, "JustAudioPlugin.players");
+  just_audio_web.JustAudioPlugin = class JustAudioPlugin extends just_audio_platform_interface.JustAudioPlatform {
+    get players() {
+      return this[players];
+    }
+    set players(value) {
+      super.players = value;
+    }
+    static registerWith(registrar) {
+      if (registrar == null) dart.nullFailed(I[0], 15, 38, "registrar");
+      just_audio_platform_interface.JustAudioPlatform.instance = new just_audio_web.JustAudioPlugin.new();
+    }
+    init(request) {
+      if (request == null) dart.nullFailed(I[0], 20, 48, "request");
+      return async.async(just_audio_platform_interface.AudioPlayerPlatform, (function* init() {
+        if (dart.test(this.players[$containsKey](request.id))) {
+          dart.throw(new message_codec.PlatformException.new({code: "error", message: "Platform player " + dart.str(request.id) + " already exists"}));
+        }
+        let player = new just_audio_web.Html5AudioPlayer.new({id: request.id});
+        this.players[$_set](request.id, player);
+        return player;
+      }).bind(this));
+    }
+    disposePlayer(request) {
+      if (request == null) dart.nullFailed(I[0], 33, 28, "request");
+      return async.async(just_audio_platform_interface.DisposePlayerResponse, (function* disposePlayer() {
+        let t0;
+        yield (t0 = this.players[$_get](request.id), t0 == null ? null : t0.release());
+        this.players[$remove](request.id);
+        return new just_audio_platform_interface.DisposePlayerResponse.new();
+      }).bind(this));
+    }
+  };
+  (just_audio_web.JustAudioPlugin.new = function() {
+    this[players] = new (T.IdentityMapOfString$JustAudioPlayer()).new();
+    just_audio_web.JustAudioPlugin.__proto__.new.call(this);
+    ;
+  }).prototype = just_audio_web.JustAudioPlugin.prototype;
+  dart.addTypeTests(just_audio_web.JustAudioPlugin);
+  dart.addTypeCaches(just_audio_web.JustAudioPlugin);
+  dart.setLibraryUri(just_audio_web.JustAudioPlugin, I[1]);
+  dart.setFieldSignature(just_audio_web.JustAudioPlugin, () => ({
+    __proto__: dart.getFields(just_audio_web.JustAudioPlugin.__proto__),
+    players: dart.finalFieldType(core.Map$(core.String, just_audio_web.JustAudioPlayer))
+  }));
+  var _eventController = dart.privateName(just_audio_web, "_eventController");
+  var _dataEventController = dart.privateName(just_audio_web, "_dataEventController");
+  var _processingState = dart.privateName(just_audio_web, "_processingState");
+  var _playing = dart.privateName(just_audio_web, "_playing");
+  var _index = dart.privateName(just_audio_web, "_index");
+  just_audio_web.JustAudioPlayer = class JustAudioPlayer extends just_audio_platform_interface.AudioPlayerPlatform {
+    release() {
+      return async.async(dart.void, (function* release() {
+        this[_eventController].close();
+        this[_dataEventController].close();
+      }).bind(this));
+    }
+    broadcastPlaybackEvent() {
+      let updateTime = new core.DateTime.now();
+      this[_eventController].add(new just_audio_platform_interface.PlaybackEventMessage.new({processingState: this[_processingState], updatePosition: this.getCurrentPosition(), updateTime: updateTime, bufferedPosition: this.getBufferedPosition(), icyMetadata: null, duration: this.getDuration(), currentIndex: this[_index], androidAudioSessionId: null}));
+    }
+    transition(processingState) {
+      if (processingState == null) dart.nullFailed(I[0], 83, 42, "processingState");
+      this[_processingState] = processingState;
+      this.broadcastPlaybackEvent();
+    }
+  };
+  (just_audio_web.JustAudioPlayer.new = function(opts) {
+    let id = opts && 'id' in opts ? opts.id : null;
+    if (id == null) dart.nullFailed(I[0], 49, 36, "id");
+    this[_eventController] = T.StreamControllerOfPlaybackEventMessage().broadcast();
+    this[_dataEventController] = T.StreamControllerOfPlayerDataMessage().broadcast();
+    this[_processingState] = just_audio_platform_interface.ProcessingStateMessage.idle;
+    this[_playing] = false;
+    this[_index] = null;
+    just_audio_web.JustAudioPlayer.__proto__.new.call(this, id);
+    ;
+  }).prototype = just_audio_web.JustAudioPlayer.prototype;
+  dart.addTypeTests(just_audio_web.JustAudioPlayer);
+  dart.addTypeCaches(just_audio_web.JustAudioPlayer);
+  dart.setMethodSignature(just_audio_web.JustAudioPlayer, () => ({
+    __proto__: dart.getMethods(just_audio_web.JustAudioPlayer.__proto__),
+    release: dart.fnType(async.Future$(dart.void), []),
+    broadcastPlaybackEvent: dart.fnType(dart.void, []),
+    transition: dart.fnType(dart.void, [just_audio_platform_interface.ProcessingStateMessage])
+  }));
+  dart.setLibraryUri(just_audio_web.JustAudioPlayer, I[1]);
+  dart.setFieldSignature(just_audio_web.JustAudioPlayer, () => ({
+    __proto__: dart.getFields(just_audio_web.JustAudioPlayer.__proto__),
+    [_eventController]: dart.finalFieldType(async.StreamController$(just_audio_platform_interface.PlaybackEventMessage)),
+    [_dataEventController]: dart.finalFieldType(async.StreamController$(just_audio_platform_interface.PlayerDataMessage)),
+    [_processingState]: dart.fieldType(just_audio_platform_interface.ProcessingStateMessage),
+    [_playing]: dart.fieldType(core.bool),
+    [_index]: dart.fieldType(dart.nullable(core.int))
+  }));
+  var _audioElement = dart.privateName(just_audio_web, "_audioElement");
+  var _durationCompleter = dart.privateName(just_audio_web, "_durationCompleter");
+  var _audioSourcePlayer = dart.privateName(just_audio_web, "_audioSourcePlayer");
+  var _loopMode = dart.privateName(just_audio_web, "_loopMode");
+  var _shuffleModeEnabled = dart.privateName(just_audio_web, "_shuffleModeEnabled");
+  var _audioSourcePlayers = dart.privateName(just_audio_web, "_audioSourcePlayers");
+  var _currentAudioSourcePlayer = dart.privateName(just_audio_web, "_currentAudioSourcePlayer");
+  var _seek = dart.privateName(just_audio_web, "_seek");
+  var _play = dart.privateName(just_audio_web, "_play");
+  var _concatenating = dart.privateName(just_audio_web, "_concatenating");
+  const release = Symbol("release");
+  just_audio_web.Html5AudioPlayer = class Html5AudioPlayer extends just_audio_web.JustAudioPlayer {
+    get order() {
+      let sequence = dart.nullCheck(this[_audioSourcePlayer]).sequence;
+      return dart.test(this[_shuffleModeEnabled]) ? dart.nullCheck(this[_audioSourcePlayer]).shuffleIndices : T.ListOfint().generate(sequence[$length], dart.fn(i => {
+        if (i == null) dart.nullFailed(I[0], 136, 43, "i");
+        return i;
+      }, T.intToint()));
+    }
+    getInv(order) {
+      if (order == null) dart.nullFailed(I[0], 140, 30, "order");
+      let orderInv = T.ListOfint().filled(order[$length], 0);
+      for (let i = 0; i < dart.notNull(order[$length]); i = i + 1) {
+        orderInv[$_set](order[$_get](i), i);
+      }
+      return orderInv;
+    }
+    onEnded() {
+      return async.async(dart.void, (function* onEnded() {
+        if (this[_loopMode] == just_audio_platform_interface.LoopModeMessage.one) {
+          yield this[_seek](0, null);
+          this[_play]();
+        } else {
+          let order = this.order;
+          let orderInv = this.getInv(order);
+          if (dart.notNull(orderInv[$_get](dart.nullCheck(this[_index]))) + 1 < dart.notNull(order[$length])) {
+            this[_index] = order[$_get](dart.notNull(orderInv[$_get](dart.nullCheck(this[_index]))) + 1);
+            yield dart.nullCheck(this[_currentAudioSourcePlayer]).load();
+            if (dart.test(this[_playing])) {
+              this[_play]();
+            }
+          } else {
+            if (this[_loopMode] == just_audio_platform_interface.LoopModeMessage.all) {
+              if (order[$length] === 1) {
+                yield this[_seek](0, null);
+                this[_play]();
+              } else {
+                this[_index] = order[$_get](0);
+                yield dart.nullCheck(this[_currentAudioSourcePlayer]).load();
+                if (dart.test(this[_playing])) {
+                  this[_play]();
+                }
+              }
+            } else {
+              this.transition(just_audio_platform_interface.ProcessingStateMessage.completed);
+            }
+          }
+        }
+      }).bind(this));
+    }
+    get [_currentAudioSourcePlayer]() {
+      return this[_audioSourcePlayer] != null && this[_index] != null && dart.test(dart.nullCheck(this[_audioSourcePlayer]).sequence[$isNotEmpty]) && dart.nullCheck(this[_index]) < dart.notNull(dart.nullCheck(this[_audioSourcePlayer]).sequence[$length]) ? dart.nullCheck(this[_audioSourcePlayer]).sequence[$_get](dart.nullCheck(this[_index])) : null;
+    }
+    get playbackEventMessageStream() {
+      return this[_eventController].stream;
+    }
+    get playerDataMessageStream() {
+      return this[_dataEventController].stream;
+    }
+    load(request) {
+      if (request == null) dart.nullFailed(I[0], 204, 41, "request");
+      return async.async(just_audio_platform_interface.LoadResponse, (function* load() {
+        let t0, t0$, t0$0;
+        t0 = this[_currentAudioSourcePlayer];
+        t0 == null ? null : t0.pause();
+        this[_audioSourcePlayer] = this.getAudioSource(request.audioSourceMessage);
+        this[_index] = (t0$ = request.initialIndex, t0$ == null ? 0 : t0$);
+        let duration = (yield dart.nullCheck(this[_currentAudioSourcePlayer]).load((t0$0 = request.initialPosition, t0$0 == null ? null : t0$0.inMilliseconds)));
+        if (request.initialPosition != null) {
+          yield dart.nullCheck(this[_currentAudioSourcePlayer]).seek(dart.nullCheck(request.initialPosition).inMilliseconds);
+        }
+        if (dart.test(this[_playing])) {
+          dart.nullCheck(this[_currentAudioSourcePlayer]).play();
+        }
+        return new just_audio_platform_interface.LoadResponse.new({duration: duration});
+      }).bind(this));
+    }
+    loadUri(uri, initialPosition) {
+      if (uri == null) dart.nullFailed(I[0], 223, 17, "uri");
+      return async.async(T.DurationN(), (function* loadUri() {
+        this.transition(just_audio_platform_interface.ProcessingStateMessage.loading);
+        let src = dart.toString(uri);
+        if (src != this[_audioElement].src) {
+          this[_durationCompleter] = async.Completer.new();
+          this[_audioElement].src = src;
+          this[_audioElement].preload = "auto";
+          this[_audioElement].load();
+          if (initialPosition != null) {
+            this[_audioElement].currentTime = dart.notNull(initialPosition.inMilliseconds) / 1000.0;
+          }
+          try {
+            yield dart.nullCheck(this[_durationCompleter]).future;
+          } catch (e$) {
+            let e = dart.getThrown(e$);
+            if (html.MediaError.is(e)) {
+              dart.throw(new message_codec.PlatformException.new({code: dart.str(e.code), message: "Failed to load URL"}));
+            } else
+              throw e$;
+          } finally {
+            this[_durationCompleter] = null;
+          }
+        }
+        this.transition(just_audio_platform_interface.ProcessingStateMessage.ready);
+        let seconds = this[_audioElement].duration;
+        return seconds[$isFinite] ? new core.Duration.new({milliseconds: (dart.notNull(seconds) * 1000)[$toInt]()}) : null;
+      }).bind(this));
+    }
+    play(request) {
+      if (request == null) dart.nullFailed(I[0], 251, 41, "request");
+      return async.async(just_audio_platform_interface.PlayResponse, (function* play() {
+        if (dart.test(this[_playing])) return new just_audio_platform_interface.PlayResponse.new();
+        this[_playing] = true;
+        yield this[_play]();
+        return new just_audio_platform_interface.PlayResponse.new();
+      }).bind(this));
+    }
+    [_play]() {
+      return async.async(dart.void, (function* _play() {
+        let t1;
+        yield (t1 = this[_currentAudioSourcePlayer], t1 == null ? null : t1.play());
+      }).bind(this));
+    }
+    pause(request) {
+      if (request == null) dart.nullFailed(I[0], 263, 44, "request");
+      return async.async(just_audio_platform_interface.PauseResponse, (function* pause() {
+        let t1;
+        if (!dart.test(this[_playing])) return new just_audio_platform_interface.PauseResponse.new();
+        this[_playing] = false;
+        t1 = this[_currentAudioSourcePlayer];
+        t1 == null ? null : t1.pause();
+        return new just_audio_platform_interface.PauseResponse.new();
+      }).bind(this));
+    }
+    setVolume(request) {
+      if (request == null) dart.nullFailed(I[0], 271, 56, "request");
+      return async.async(just_audio_platform_interface.SetVolumeResponse, (function* setVolume() {
+        this[_audioElement].volume = request.volume;
+        return new just_audio_platform_interface.SetVolumeResponse.new();
+      }).bind(this));
+    }
+    setSpeed(request) {
+      if (request == null) dart.nullFailed(I[0], 277, 53, "request");
+      return async.async(just_audio_platform_interface.SetSpeedResponse, (function* setSpeed() {
+        this[_audioElement].playbackRate = request.speed;
+        return new just_audio_platform_interface.SetSpeedResponse.new();
+      }).bind(this));
+    }
+    setLoopMode(request) {
+      if (request == null) dart.nullFailed(I[0], 283, 62, "request");
+      return async.async(just_audio_platform_interface.SetLoopModeResponse, (function* setLoopMode() {
+        this[_loopMode] = request.loopMode;
+        return new just_audio_platform_interface.SetLoopModeResponse.new();
+      }).bind(this));
+    }
+    setShuffleMode(request) {
+      if (request == null) dart.nullFailed(I[0], 290, 29, "request");
+      return async.async(just_audio_platform_interface.SetShuffleModeResponse, (function* setShuffleMode() {
+        this[_shuffleModeEnabled] = request.shuffleMode == just_audio_platform_interface.ShuffleModeMessage.all;
+        return new just_audio_platform_interface.SetShuffleModeResponse.new();
+      }).bind(this));
+    }
+    setShuffleOrder(request) {
+      if (request == null) dart.nullFailed(I[0], 297, 30, "request");
+      return async.async(just_audio_platform_interface.SetShuffleOrderResponse, (function* setShuffleOrder() {
+        const internalSetShuffleOrder = sourceMessage => {
+          if (sourceMessage == null) dart.nullFailed(I[0], 298, 53, "sourceMessage");
+          let audioSourcePlayer = this[_audioSourcePlayers][$_get](sourceMessage.id);
+          if (audioSourcePlayer == null) return;
+          if (just_audio_platform_interface.ConcatenatingAudioSourceMessage.is(sourceMessage) && just_audio_web.ConcatenatingAudioSourcePlayer.is(audioSourcePlayer)) {
+            audioSourcePlayer.setShuffleOrder(sourceMessage.shuffleOrder);
+            for (let childMessage of sourceMessage.children) {
+              internalSetShuffleOrder(childMessage);
+            }
+          } else if (just_audio_platform_interface.LoopingAudioSourceMessage.is(sourceMessage)) {
+            internalSetShuffleOrder(sourceMessage.child);
+          }
+        };
+        dart.fn(internalSetShuffleOrder, T.AudioSourceMessageTovoid());
+        internalSetShuffleOrder(request.audioSourceMessage);
+        return new just_audio_platform_interface.SetShuffleOrderResponse.new();
+      }).bind(this));
+    }
+    seek(request) {
+      if (request == null) dart.nullFailed(I[0], 317, 41, "request");
+      return async.async(just_audio_platform_interface.SeekResponse, (function* seek() {
+        let t1, t1$;
+        yield this[_seek]((t1$ = (t1 = request.position, t1 == null ? null : t1.inMilliseconds), t1$ == null ? 0 : t1$), request.index);
+        return new just_audio_platform_interface.SeekResponse.new();
+      }).bind(this));
+    }
+    [_seek](position, newIndex) {
+      if (position == null) dart.nullFailed(I[0], 322, 26, "position");
+      return async.async(dart.void, (function* _seek() {
+        let t1;
+        let index = (t1 = newIndex, t1 == null ? this[_index] : t1);
+        if (index != this[_index]) {
+          dart.nullCheck(this[_currentAudioSourcePlayer]).pause();
+          this[_index] = index;
+          yield dart.nullCheck(this[_currentAudioSourcePlayer]).load(position);
+          if (dart.test(this[_playing])) {
+            dart.nullCheck(this[_currentAudioSourcePlayer]).play();
+          }
+        } else {
+          yield dart.nullCheck(this[_currentAudioSourcePlayer]).seek(position);
+        }
+      }).bind(this));
+    }
+    [_concatenating](playerId) {
+      if (playerId == null) dart.nullFailed(I[0], 336, 57, "playerId");
+      return T.ConcatenatingAudioSourcePlayerN().as(this[_audioSourcePlayers][$_get](playerId));
+    }
+    concatenatingInsertAll(request) {
+      if (request == null) dart.nullFailed(I[0], 341, 37, "request");
+      return async.async(just_audio_platform_interface.ConcatenatingInsertAllResponse, (function* concatenatingInsertAll() {
+        dart.nullCheck(this[_concatenating](request.id)).setShuffleOrder(request.shuffleOrder);
+        dart.nullCheck(this[_concatenating](request.id)).insertAll(request.index, this.getAudioSources(request.children));
+        if (this[_index] != null && dart.notNull(request.index) <= dart.nullCheck(this[_index])) {
+          this[_index] = dart.nullCheck(this[_index]) + dart.notNull(request.children[$length]);
+        }
+        this.broadcastPlaybackEvent();
+        return new just_audio_platform_interface.ConcatenatingInsertAllResponse.new();
+      }).bind(this));
+    }
+    concatenatingRemoveRange(request) {
+      if (request == null) dart.nullFailed(I[0], 354, 39, "request");
+      return async.async(just_audio_platform_interface.ConcatenatingRemoveRangeResponse, (function* concatenatingRemoveRange() {
+        if (this[_index] != null && dart.nullCheck(this[_index]) >= dart.notNull(request.startIndex) && dart.nullCheck(this[_index]) < dart.notNull(request.endIndex) && dart.test(this[_playing])) {
+          dart.nullCheck(this[_currentAudioSourcePlayer]).pause();
+        }
+        dart.nullCheck(this[_concatenating](request.id)).setShuffleOrder(request.shuffleOrder);
+        dart.nullCheck(this[_concatenating](request.id)).removeRange(request.startIndex, request.endIndex);
+        if (this[_index] != null) {
+          if (dart.nullCheck(this[_index]) >= dart.notNull(request.startIndex) && dart.nullCheck(this[_index]) < dart.notNull(request.endIndex)) {
+            if (dart.notNull(request.startIndex) >= dart.notNull(dart.nullCheck(this[_audioSourcePlayer]).sequence[$length])) {
+              this[_index] = dart.notNull(request.startIndex) - 1;
+              if (dart.nullCheck(this[_index]) < 0) this[_index] = 0;
+            } else {
+              this[_index] = request.startIndex;
+            }
+            if (dart.test(this[_playing]) && this[_currentAudioSourcePlayer] != null) {
+              yield dart.nullCheck(this[_currentAudioSourcePlayer]).load();
+              dart.nullCheck(this[_currentAudioSourcePlayer]).play();
+            }
+          } else if (dart.notNull(request.endIndex) <= dart.nullCheck(this[_index])) {
+            this[_index] = dart.nullCheck(this[_index]) - (dart.notNull(request.endIndex) - dart.notNull(request.startIndex));
+          }
+        }
+        this.broadcastPlaybackEvent();
+        return new just_audio_platform_interface.ConcatenatingRemoveRangeResponse.new();
+      }).bind(this));
+    }
+    concatenatingMove(request) {
+      if (request == null) dart.nullFailed(I[0], 390, 32, "request");
+      return async.async(just_audio_platform_interface.ConcatenatingMoveResponse, (function* concatenatingMove() {
+        dart.nullCheck(this[_concatenating](request.id)).setShuffleOrder(request.shuffleOrder);
+        dart.nullCheck(this[_concatenating](request.id)).move(request.currentIndex, request.newIndex);
+        if (this[_index] != null) {
+          if (request.currentIndex == this[_index]) {
+            this[_index] = request.newIndex;
+          } else if (dart.notNull(request.currentIndex) < dart.nullCheck(this[_index]) && dart.notNull(request.newIndex) >= dart.nullCheck(this[_index])) {
+            this[_index] = dart.nullCheck(this[_index]) - 1;
+          } else if (dart.notNull(request.currentIndex) > dart.nullCheck(this[_index]) && dart.notNull(request.newIndex) <= dart.nullCheck(this[_index])) {
+            this[_index] = dart.nullCheck(this[_index]) + 1;
+          }
+        }
+        this.broadcastPlaybackEvent();
+        return new just_audio_platform_interface.ConcatenatingMoveResponse.new();
+      }).bind(this));
+    }
+    setAndroidAudioAttributes(request) {
+      if (request == null) dart.nullFailed(I[0], 410, 40, "request");
+      return async.async(just_audio_platform_interface.SetAndroidAudioAttributesResponse, function* setAndroidAudioAttributes() {
+        return new just_audio_platform_interface.SetAndroidAudioAttributesResponse.new();
+      });
+    }
+    setAutomaticallyWaitsToMinimizeStalling(request) {
+      if (request == null) dart.nullFailed(I[0], 417, 58, "request");
+      return async.async(just_audio_platform_interface.SetAutomaticallyWaitsToMinimizeStallingResponse, function* setAutomaticallyWaitsToMinimizeStalling() {
+        return new just_audio_platform_interface.SetAutomaticallyWaitsToMinimizeStallingResponse.new();
+      });
+    }
+    setCanUseNetworkResourcesForLiveStreamingWhilePaused(request) {
+      if (request == null) dart.nullFailed(I[0], 425, 15, "request");
+      return async.async(just_audio_platform_interface.SetCanUseNetworkResourcesForLiveStreamingWhilePausedResponse, function* setCanUseNetworkResourcesForLiveStreamingWhilePaused() {
+        return new just_audio_platform_interface.SetCanUseNetworkResourcesForLiveStreamingWhilePausedResponse.new();
+      });
+    }
+    setPreferredPeakBitRate(request) {
+      if (request == null) dart.nullFailed(I[0], 431, 38, "request");
+      return async.async(just_audio_platform_interface.SetPreferredPeakBitRateResponse, function* setPreferredPeakBitRate() {
+        return new just_audio_platform_interface.SetPreferredPeakBitRateResponse.new();
+      });
+    }
+    getCurrentPosition() {
+      let t1, t1$;
+      t1$ = (t1 = this[_currentAudioSourcePlayer], t1 == null ? null : t1.position);
+      return t1$ == null ? core.Duration.zero : t1$;
+    }
+    getBufferedPosition() {
+      let t1, t1$;
+      t1$ = (t1 = this[_currentAudioSourcePlayer], t1 == null ? null : t1.bufferedPosition);
+      return t1$ == null ? core.Duration.zero : t1$;
+    }
+    getDuration() {
+      let t1;
+      t1 = this[_currentAudioSourcePlayer];
+      return t1 == null ? null : t1.duration;
+    }
+    release() {
+      return async.async(dart.void, (function* release$() {
+        let t1;
+        t1 = this[_currentAudioSourcePlayer];
+        t1 == null ? null : t1.pause();
+        this[_audioElement][$removeAttribute]("src");
+        this[_audioElement].load();
+        this.transition(just_audio_platform_interface.ProcessingStateMessage.idle);
+        return yield this[release]();
+      }).bind(this));
+    }
+    getAudioSources(messages) {
+      if (messages == null) dart.nullFailed(I[0], 456, 68, "messages");
+      return messages[$map](just_audio_web.AudioSourcePlayer, dart.fn(message => {
+        if (message == null) dart.nullFailed(I[0], 457, 21, "message");
+        return this.getAudioSource(message);
+      }, T.AudioSourceMessageToAudioSourcePlayer()))[$toList]();
+    }
+    getAudioSource(audioSourceMessage) {
+      if (audioSourceMessage == null) dart.nullFailed(I[0], 461, 55, "audioSourceMessage");
+      let id = audioSourceMessage.id;
+      let audioSourcePlayer = this[_audioSourcePlayers][$_get](id);
+      if (audioSourcePlayer == null) {
+        audioSourcePlayer = this.decodeAudioSource(audioSourceMessage);
+        this[_audioSourcePlayers][$_set](id, audioSourcePlayer);
+      }
+      return audioSourcePlayer;
+    }
+    decodeAudioSource(audioSourceMessage) {
+      if (audioSourceMessage == null) dart.nullFailed(I[0], 472, 58, "audioSourceMessage");
+      if (just_audio_platform_interface.ProgressiveAudioSourceMessage.is(audioSourceMessage)) {
+        return new just_audio_web.ProgressiveAudioSourcePlayer.new(this, audioSourceMessage.id, core.Uri.parse(audioSourceMessage.uri), audioSourceMessage.headers);
+      } else if (just_audio_platform_interface.DashAudioSourceMessage.is(audioSourceMessage)) {
+        return new just_audio_web.DashAudioSourcePlayer.new(this, audioSourceMessage.id, core.Uri.parse(audioSourceMessage.uri), audioSourceMessage.headers);
+      } else if (just_audio_platform_interface.HlsAudioSourceMessage.is(audioSourceMessage)) {
+        return new just_audio_web.HlsAudioSourcePlayer.new(this, audioSourceMessage.id, core.Uri.parse(audioSourceMessage.uri), audioSourceMessage.headers);
+      } else if (just_audio_platform_interface.ConcatenatingAudioSourceMessage.is(audioSourceMessage)) {
+        return new just_audio_web.ConcatenatingAudioSourcePlayer.new(this, audioSourceMessage.id, this.getAudioSources(audioSourceMessage.children), audioSourceMessage.useLazyPreparation, audioSourceMessage.shuffleOrder);
+      } else if (just_audio_platform_interface.ClippingAudioSourceMessage.is(audioSourceMessage)) {
+        return new just_audio_web.ClippingAudioSourcePlayer.new(this, audioSourceMessage.id, just_audio_web.UriAudioSourcePlayer.as(this.getAudioSource(audioSourceMessage.child)), audioSourceMessage.start, audioSourceMessage.end);
+      } else if (just_audio_platform_interface.LoopingAudioSourceMessage.is(audioSourceMessage)) {
+        return new just_audio_web.LoopingAudioSourcePlayer.new(this, audioSourceMessage.id, this.getAudioSource(audioSourceMessage.child), audioSourceMessage.count);
+      } else {
+        dart.throw(core.Exception.new("Unknown AudioSource type: " + dart.str(audioSourceMessage)));
+      }
+    }
+    [release]() {
+      return super.release();
+    }
+  };
+  (just_audio_web.Html5AudioPlayer.new = function(opts) {
+    let id = opts && 'id' in opts ? opts.id : null;
+    if (id == null) dart.nullFailed(I[0], 99, 37, "id");
+    this[_audioElement] = html.AudioElement.new();
+    this[_durationCompleter] = null;
+    this[_audioSourcePlayer] = null;
+    this[_loopMode] = just_audio_platform_interface.LoopModeMessage.off;
+    this[_shuffleModeEnabled] = false;
+    this[_audioSourcePlayers] = new (T.IdentityMapOfString$AudioSourcePlayer()).new();
+    just_audio_web.Html5AudioPlayer.__proto__.new.call(this, {id: id});
+    this[_audioElement][$addEventListener]("durationchange", dart.fn(event => {
+      let t0;
+      if (event == null) dart.nullFailed(I[0], 100, 55, "event");
+      t0 = this[_durationCompleter];
+      t0 == null ? null : t0.complete();
+      this.broadcastPlaybackEvent();
+    }, T.EventToNull()));
+    this[_audioElement][$addEventListener]("error", dart.fn(event => {
+      let t0;
+      if (event == null) dart.nullFailed(I[0], 104, 46, "event");
+      t0 = this[_durationCompleter];
+      t0 == null ? null : t0.completeError(dart.nullCheck(this[_audioElement].error));
+    }, T.EventToNull()));
+    this[_audioElement][$addEventListener]("ended", dart.fn(event => {
+      if (event == null) dart.nullFailed(I[0], 107, 46, "event");
+      return async.async(core.Null, (function*() {
+        let t0;
+        t0 = this[_currentAudioSourcePlayer];
+        t0 == null ? null : t0.complete();
+      }).bind(this));
+    }, T.EventToFutureOfNull()));
+    this[_audioElement][$addEventListener]("timeupdate", dart.fn(event => {
+      let t0;
+      if (event == null) dart.nullFailed(I[0], 110, 51, "event");
+      t0 = this[_currentAudioSourcePlayer];
+      t0 == null ? null : t0.timeUpdated(this[_audioElement].currentTime);
+    }, T.EventToNull()));
+    this[_audioElement][$addEventListener]("loadstart", dart.fn(event => {
+      if (event == null) dart.nullFailed(I[0], 114, 50, "event");
+      this.transition(just_audio_platform_interface.ProcessingStateMessage.buffering);
+    }, T.EventToNull()));
+    this[_audioElement][$addEventListener]("waiting", dart.fn(event => {
+      if (event == null) dart.nullFailed(I[0], 117, 48, "event");
+      this.transition(just_audio_platform_interface.ProcessingStateMessage.buffering);
+    }, T.EventToNull()));
+    this[_audioElement][$addEventListener]("stalled", dart.fn(event => {
+      if (event == null) dart.nullFailed(I[0], 120, 48, "event");
+      this.transition(just_audio_platform_interface.ProcessingStateMessage.buffering);
+    }, T.EventToNull()));
+    this[_audioElement][$addEventListener]("canplaythrough", dart.fn(event => {
+      if (event == null) dart.nullFailed(I[0], 123, 55, "event");
+      this.transition(just_audio_platform_interface.ProcessingStateMessage.ready);
+    }, T.EventToNull()));
+    this[_audioElement][$addEventListener]("progress", dart.fn(event => {
+      if (event == null) dart.nullFailed(I[0], 126, 49, "event");
+      this.broadcastPlaybackEvent();
+    }, T.EventToNull()));
+  }).prototype = just_audio_web.Html5AudioPlayer.prototype;
+  dart.addTypeTests(just_audio_web.Html5AudioPlayer);
+  dart.addTypeCaches(just_audio_web.Html5AudioPlayer);
+  dart.setMethodSignature(just_audio_web.Html5AudioPlayer, () => ({
+    __proto__: dart.getMethods(just_audio_web.Html5AudioPlayer.__proto__),
+    getInv: dart.fnType(core.List$(core.int), [core.List$(core.int)]),
+    onEnded: dart.fnType(async.Future$(dart.void), []),
+    loadUri: dart.fnType(async.Future$(dart.nullable(core.Duration)), [core.Uri, dart.nullable(core.Duration)]),
+    [_play]: dart.fnType(async.Future$(dart.void), []),
+    [_seek]: dart.fnType(async.Future$(dart.void), [core.int, dart.nullable(core.int)]),
+    [_concatenating]: dart.fnType(dart.nullable(just_audio_web.ConcatenatingAudioSourcePlayer), [core.String]),
+    getCurrentPosition: dart.fnType(core.Duration, []),
+    getBufferedPosition: dart.fnType(core.Duration, []),
+    getDuration: dart.fnType(dart.nullable(core.Duration), []),
+    getAudioSources: dart.fnType(core.List$(just_audio_web.AudioSourcePlayer), [core.List$(just_audio_platform_interface.AudioSourceMessage)]),
+    getAudioSource: dart.fnType(just_audio_web.AudioSourcePlayer, [just_audio_platform_interface.AudioSourceMessage]),
+    decodeAudioSource: dart.fnType(just_audio_web.AudioSourcePlayer, [just_audio_platform_interface.AudioSourceMessage])
+  }));
+  dart.setGetterSignature(just_audio_web.Html5AudioPlayer, () => ({
+    __proto__: dart.getGetters(just_audio_web.Html5AudioPlayer.__proto__),
+    order: core.List$(core.int),
+    [_currentAudioSourcePlayer]: dart.nullable(just_audio_web.IndexedAudioSourcePlayer)
+  }));
+  dart.setLibraryUri(just_audio_web.Html5AudioPlayer, I[1]);
+  dart.setFieldSignature(just_audio_web.Html5AudioPlayer, () => ({
+    __proto__: dart.getFields(just_audio_web.Html5AudioPlayer.__proto__),
+    [_audioElement]: dart.finalFieldType(html.AudioElement),
+    [_durationCompleter]: dart.fieldType(dart.nullable(async.Completer)),
+    [_audioSourcePlayer]: dart.fieldType(dart.nullable(just_audio_web.AudioSourcePlayer)),
+    [_loopMode]: dart.fieldType(just_audio_platform_interface.LoopModeMessage),
+    [_shuffleModeEnabled]: dart.fieldType(core.bool),
+    [_audioSourcePlayers]: dart.finalFieldType(core.Map$(core.String, just_audio_web.AudioSourcePlayer))
+  }));
+  var html5AudioPlayer$ = dart.privateName(just_audio_web, "AudioSourcePlayer.html5AudioPlayer");
+  var id$ = dart.privateName(just_audio_web, "AudioSourcePlayer.id");
+  just_audio_web.AudioSourcePlayer = class AudioSourcePlayer extends core.Object {
+    get html5AudioPlayer() {
+      return this[html5AudioPlayer$];
+    }
+    set html5AudioPlayer(value) {
+      this[html5AudioPlayer$] = value;
+    }
+    get id() {
+      return this[id$];
+    }
+    set id(value) {
+      super.id = value;
+    }
+  };
+  (just_audio_web.AudioSourcePlayer.new = function(html5AudioPlayer, id) {
+    if (html5AudioPlayer == null) dart.nullFailed(I[0], 513, 26, "html5AudioPlayer");
+    if (id == null) dart.nullFailed(I[0], 513, 49, "id");
+    this[html5AudioPlayer$] = html5AudioPlayer;
+    this[id$] = id;
+    ;
+  }).prototype = just_audio_web.AudioSourcePlayer.prototype;
+  dart.addTypeTests(just_audio_web.AudioSourcePlayer);
+  dart.addTypeCaches(just_audio_web.AudioSourcePlayer);
+  dart.setLibraryUri(just_audio_web.AudioSourcePlayer, I[1]);
+  dart.setFieldSignature(just_audio_web.AudioSourcePlayer, () => ({
+    __proto__: dart.getFields(just_audio_web.AudioSourcePlayer.__proto__),
+    html5AudioPlayer: dart.fieldType(just_audio_web.Html5AudioPlayer),
+    id: dart.finalFieldType(core.String)
+  }));
+  just_audio_web.IndexedAudioSourcePlayer = class IndexedAudioSourcePlayer extends just_audio_web.AudioSourcePlayer {
+    timeUpdated(seconds) {
+      if (seconds == null) dart.nullFailed(I[0], 543, 35, "seconds");
+      return async.async(dart.void, function* timeUpdated() {
+      });
+    }
+    get [_audioElement]() {
+      return this.html5AudioPlayer[_audioElement];
+    }
+    toString() {
+      return dart.str(this[$runtimeType]);
+    }
+  };
+  (just_audio_web.IndexedAudioSourcePlayer.new = function(html5AudioPlayer, id) {
+    if (html5AudioPlayer == null) dart.nullFailed(I[0], 524, 45, "html5AudioPlayer");
+    if (id == null) dart.nullFailed(I[0], 524, 70, "id");
+    just_audio_web.IndexedAudioSourcePlayer.__proto__.new.call(this, html5AudioPlayer, id);
+    ;
+  }).prototype = just_audio_web.IndexedAudioSourcePlayer.prototype;
+  dart.addTypeTests(just_audio_web.IndexedAudioSourcePlayer);
+  dart.addTypeCaches(just_audio_web.IndexedAudioSourcePlayer);
+  dart.setMethodSignature(just_audio_web.IndexedAudioSourcePlayer, () => ({
+    __proto__: dart.getMethods(just_audio_web.IndexedAudioSourcePlayer.__proto__),
+    timeUpdated: dart.fnType(async.Future$(dart.void), [core.double])
+  }));
+  dart.setGetterSignature(just_audio_web.IndexedAudioSourcePlayer, () => ({
+    __proto__: dart.getGetters(just_audio_web.IndexedAudioSourcePlayer.__proto__),
+    [_audioElement]: html.AudioElement
+  }));
+  dart.setLibraryUri(just_audio_web.IndexedAudioSourcePlayer, I[1]);
+  dart.defineExtensionMethods(just_audio_web.IndexedAudioSourcePlayer, ['toString']);
+  var uri$ = dart.privateName(just_audio_web, "UriAudioSourcePlayer.uri");
+  var headers$ = dart.privateName(just_audio_web, "UriAudioSourcePlayer.headers");
+  var _resumePos = dart.privateName(just_audio_web, "_resumePos");
+  var _duration = dart.privateName(just_audio_web, "_duration");
+  var _completer = dart.privateName(just_audio_web, "_completer");
+  var _initialPos = dart.privateName(just_audio_web, "_initialPos");
+  var _interruptPlay = dart.privateName(just_audio_web, "_interruptPlay");
+  just_audio_web.UriAudioSourcePlayer = class UriAudioSourcePlayer extends just_audio_web.IndexedAudioSourcePlayer {
+    get uri() {
+      return this[uri$];
+    }
+    set uri(value) {
+      super.uri = value;
+    }
+    get headers() {
+      return this[headers$];
+    }
+    set headers(value) {
+      super.headers = value;
+    }
+    get sequence() {
+      return T.JSArrayOfIndexedAudioSourcePlayer().of([this]);
+    }
+    get shuffleIndices() {
+      return T.JSArrayOfint().of([0]);
+    }
+    load(initialPosition = null) {
+      return async.async(T.DurationN(), (function* load() {
+        let t1;
+        this[_initialPos] = initialPosition;
+        this[_resumePos] = dart.notNull((t1 = initialPosition, t1 == null ? 0 : t1)) / 1000.0;
+        this[_duration] = (yield this.html5AudioPlayer.loadUri(this.uri, initialPosition != null ? new core.Duration.new({milliseconds: initialPosition}) : null));
+        this[_initialPos] = null;
+        return this[_duration];
+      }).bind(this));
+    }
+    play() {
+      return async.async(dart.void, (function* play() {
+        this[_audioElement].currentTime = dart.nullCheck(this[_resumePos]);
+        yield this[_audioElement][$play]();
+        this[_completer] = async.Completer.new();
+        yield dart.nullCheck(this[_completer]).future;
+        this[_completer] = null;
+      }).bind(this));
+    }
+    pause() {
+      return async.async(dart.void, (function* pause() {
+        this[_resumePos] = this[_audioElement].currentTime;
+        this[_audioElement].pause();
+        this[_interruptPlay]();
+      }).bind(this));
+    }
+    seek(position) {
+      if (position == null) dart.nullFailed(I[0], 613, 25, "position");
+      return async.async(dart.void, (function* seek() {
+        this[_audioElement].currentTime = this[_resumePos] = dart.notNull(position) / 1000.0;
+      }).bind(this));
+    }
+    complete() {
+      return async.async(dart.void, (function* complete() {
+        this[_interruptPlay]();
+        this.html5AudioPlayer.onEnded();
+      }).bind(this));
+    }
+    [_interruptPlay]() {
+      let t1;
+      if ((t1 = this[_completer], t1 == null ? null : t1.isCompleted) === false) {
+        dart.nullCheck(this[_completer]).complete();
+      }
+    }
+    get duration() {
+      return this[_duration];
+    }
+    get position() {
+      if (this[_initialPos] != null) return new core.Duration.new({milliseconds: dart.nullCheck(this[_initialPos])});
+      let seconds = this[_audioElement].currentTime;
+      return new core.Duration.new({milliseconds: (dart.notNull(seconds) * 1000)[$toInt]()});
+    }
+    get bufferedPosition() {
+      if (dart.notNull(this[_audioElement].buffered.length) > 0) {
+        return new core.Duration.new({milliseconds: (dart.notNull(this[_audioElement].buffered.end(dart.notNull(this[_audioElement].buffered.length) - 1)) * 1000)[$toInt]()});
+      } else {
+        return core.Duration.zero;
+      }
+    }
+  };
+  (just_audio_web.UriAudioSourcePlayer.new = function(html5AudioPlayer, id, uri, headers) {
+    if (html5AudioPlayer == null) dart.nullFailed(I[0], 574, 24, "html5AudioPlayer");
+    if (id == null) dart.nullFailed(I[0], 574, 49, "id");
+    if (uri == null) dart.nullFailed(I[0], 574, 58, "uri");
+    this[_resumePos] = null;
+    this[_duration] = null;
+    this[_completer] = null;
+    this[_initialPos] = null;
+    this[uri$] = uri;
+    this[headers$] = headers;
+    just_audio_web.UriAudioSourcePlayer.__proto__.new.call(this, html5AudioPlayer, id);
+    ;
+  }).prototype = just_audio_web.UriAudioSourcePlayer.prototype;
+  dart.addTypeTests(just_audio_web.UriAudioSourcePlayer);
+  dart.addTypeCaches(just_audio_web.UriAudioSourcePlayer);
+  dart.setMethodSignature(just_audio_web.UriAudioSourcePlayer, () => ({
+    __proto__: dart.getMethods(just_audio_web.UriAudioSourcePlayer.__proto__),
+    load: dart.fnType(async.Future$(dart.nullable(core.Duration)), [], [dart.nullable(core.int)]),
+    play: dart.fnType(async.Future$(dart.void), []),
+    pause: dart.fnType(async.Future$(dart.void), []),
+    seek: dart.fnType(async.Future$(dart.void), [core.int]),
+    complete: dart.fnType(async.Future$(dart.void), []),
+    [_interruptPlay]: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(just_audio_web.UriAudioSourcePlayer, () => ({
+    __proto__: dart.getGetters(just_audio_web.UriAudioSourcePlayer.__proto__),
+    sequence: core.List$(just_audio_web.IndexedAudioSourcePlayer),
+    shuffleIndices: core.List$(core.int),
+    duration: dart.nullable(core.Duration),
+    position: core.Duration,
+    bufferedPosition: core.Duration
+  }));
+  dart.setLibraryUri(just_audio_web.UriAudioSourcePlayer, I[1]);
+  dart.setFieldSignature(just_audio_web.UriAudioSourcePlayer, () => ({
+    __proto__: dart.getFields(just_audio_web.UriAudioSourcePlayer.__proto__),
+    uri: dart.finalFieldType(core.Uri),
+    headers: dart.finalFieldType(dart.nullable(core.Map)),
+    [_resumePos]: dart.fieldType(dart.nullable(core.double)),
+    [_duration]: dart.fieldType(dart.nullable(core.Duration)),
+    [_completer]: dart.fieldType(dart.nullable(async.Completer)),
+    [_initialPos]: dart.fieldType(dart.nullable(core.int))
+  }));
+  just_audio_web.ProgressiveAudioSourcePlayer = class ProgressiveAudioSourcePlayer extends just_audio_web.UriAudioSourcePlayer {};
+  (just_audio_web.ProgressiveAudioSourcePlayer.new = function(html5AudioPlayer, id, uri, headers) {
+    if (html5AudioPlayer == null) dart.nullFailed(I[0], 662, 24, "html5AudioPlayer");
+    if (id == null) dart.nullFailed(I[0], 662, 49, "id");
+    if (uri == null) dart.nullFailed(I[0], 662, 57, "uri");
+    just_audio_web.ProgressiveAudioSourcePlayer.__proto__.new.call(this, html5AudioPlayer, id, uri, headers);
+    ;
+  }).prototype = just_audio_web.ProgressiveAudioSourcePlayer.prototype;
+  dart.addTypeTests(just_audio_web.ProgressiveAudioSourcePlayer);
+  dart.addTypeCaches(just_audio_web.ProgressiveAudioSourcePlayer);
+  dart.setLibraryUri(just_audio_web.ProgressiveAudioSourcePlayer, I[1]);
+  just_audio_web.DashAudioSourcePlayer = class DashAudioSourcePlayer extends just_audio_web.UriAudioSourcePlayer {};
+  (just_audio_web.DashAudioSourcePlayer.new = function(html5AudioPlayer, id, uri, headers) {
+    if (html5AudioPlayer == null) dart.nullFailed(I[0], 669, 24, "html5AudioPlayer");
+    if (id == null) dart.nullFailed(I[0], 669, 49, "id");
+    if (uri == null) dart.nullFailed(I[0], 669, 57, "uri");
+    just_audio_web.DashAudioSourcePlayer.__proto__.new.call(this, html5AudioPlayer, id, uri, headers);
+    ;
+  }).prototype = just_audio_web.DashAudioSourcePlayer.prototype;
+  dart.addTypeTests(just_audio_web.DashAudioSourcePlayer);
+  dart.addTypeCaches(just_audio_web.DashAudioSourcePlayer);
+  dart.setLibraryUri(just_audio_web.DashAudioSourcePlayer, I[1]);
+  just_audio_web.HlsAudioSourcePlayer = class HlsAudioSourcePlayer extends just_audio_web.UriAudioSourcePlayer {};
+  (just_audio_web.HlsAudioSourcePlayer.new = function(html5AudioPlayer, id, uri, headers) {
+    if (html5AudioPlayer == null) dart.nullFailed(I[0], 676, 24, "html5AudioPlayer");
+    if (id == null) dart.nullFailed(I[0], 676, 49, "id");
+    if (uri == null) dart.nullFailed(I[0], 676, 57, "uri");
+    just_audio_web.HlsAudioSourcePlayer.__proto__.new.call(this, html5AudioPlayer, id, uri, headers);
+    ;
+  }).prototype = just_audio_web.HlsAudioSourcePlayer.prototype;
+  dart.addTypeTests(just_audio_web.HlsAudioSourcePlayer);
+  dart.addTypeCaches(just_audio_web.HlsAudioSourcePlayer);
+  dart.setLibraryUri(just_audio_web.HlsAudioSourcePlayer, I[1]);
+  var audioSourcePlayers$ = dart.privateName(just_audio_web, "ConcatenatingAudioSourcePlayer.audioSourcePlayers");
+  var useLazyPreparation$ = dart.privateName(just_audio_web, "ConcatenatingAudioSourcePlayer.useLazyPreparation");
+  var _shuffleOrder = dart.privateName(just_audio_web, "_shuffleOrder");
+  just_audio_web.ConcatenatingAudioSourcePlayer = class ConcatenatingAudioSourcePlayer extends just_audio_web.AudioSourcePlayer {
+    get audioSourcePlayers() {
+      return this[audioSourcePlayers$];
+    }
+    set audioSourcePlayers(value) {
+      super.audioSourcePlayers = value;
+    }
+    get useLazyPreparation() {
+      return this[useLazyPreparation$];
+    }
+    set useLazyPreparation(value) {
+      super.useLazyPreparation = value;
+    }
+    get sequence() {
+      return this.audioSourcePlayers[$expand](just_audio_web.IndexedAudioSourcePlayer, dart.fn(p => {
+        if (p == null) dart.nullFailed(I[0], 696, 34, "p");
+        return p.sequence;
+      }, T.AudioSourcePlayerToListOfIndexedAudioSourcePlayer()))[$toList]();
+    }
+    get shuffleIndices() {
+      let order = T.JSArrayOfint().of([]);
+      let offset = order[$length];
+      let childOrders = T.JSArrayOfListOfint().of([]);
+      for (let audioSourcePlayer of this.audioSourcePlayers) {
+        let childShuffleIndices = audioSourcePlayer.shuffleIndices;
+        childOrders[$add](childShuffleIndices[$map](core.int, dart.fn(i => {
+          if (i == null) dart.nullFailed(I[0], 705, 48, "i");
+          return dart.notNull(i) + dart.notNull(offset);
+        }, T.intToint()))[$toList]());
+        offset = dart.notNull(offset) + dart.notNull(childShuffleIndices[$length]);
+      }
+      for (let i = 0; i < dart.notNull(childOrders[$length]); i = i + 1) {
+        order[$addAll](childOrders[$_get](this[_shuffleOrder][$_get](i)));
+      }
+      return order;
+    }
+    setShuffleOrder(shuffleOrder) {
+      if (shuffleOrder == null) dart.nullFailed(I[0], 715, 34, "shuffleOrder");
+      this[_shuffleOrder] = shuffleOrder;
+    }
+    insertAll(index, players) {
+      let t2, t1;
+      if (index == null) dart.nullFailed(I[0], 720, 22, "index");
+      if (players == null) dart.nullFailed(I[0], 720, 53, "players");
+      this.audioSourcePlayers[$insertAll](index, players);
+      for (let i = 0; i < dart.notNull(this.audioSourcePlayers[$length]); i = i + 1) {
+        if (dart.notNull(this[_shuffleOrder][$_get](i)) >= dart.notNull(index)) {
+          t1 = this[_shuffleOrder];
+          t2 = i;
+          t1[$_set](t2, dart.notNull(t1[$_get](t2)) + dart.notNull(players[$length]));
+        }
+      }
+    }
+    removeRange(start, end) {
+      let t2, t1;
+      if (start == null) dart.nullFailed(I[0], 730, 24, "start");
+      if (end == null) dart.nullFailed(I[0], 730, 35, "end");
+      this.audioSourcePlayers[$removeRange](start, end);
+      for (let i = 0; i < dart.notNull(this.audioSourcePlayers[$length]); i = i + 1) {
+        if (dart.notNull(this[_shuffleOrder][$_get](i)) >= dart.notNull(end)) {
+          t1 = this[_shuffleOrder];
+          t2 = i;
+          t1[$_set](t2, dart.notNull(t1[$_get](t2)) - (dart.notNull(end) - dart.notNull(start)));
+        }
+      }
+    }
+    move(currentIndex, newIndex) {
+      if (currentIndex == null) dart.nullFailed(I[0], 740, 17, "currentIndex");
+      if (newIndex == null) dart.nullFailed(I[0], 740, 35, "newIndex");
+      this.audioSourcePlayers[$insert](newIndex, this.audioSourcePlayers[$removeAt](currentIndex));
+    }
+  };
+  (just_audio_web.ConcatenatingAudioSourcePlayer.new = function(html5AudioPlayer, id, audioSourcePlayers, useLazyPreparation, shuffleOrder) {
+    if (html5AudioPlayer == null) dart.nullFailed(I[0], 689, 51, "html5AudioPlayer");
+    if (id == null) dart.nullFailed(I[0], 689, 76, "id");
+    if (audioSourcePlayers == null) dart.nullFailed(I[0], 690, 12, "audioSourcePlayers");
+    if (useLazyPreparation == null) dart.nullFailed(I[0], 690, 37, "useLazyPreparation");
+    if (shuffleOrder == null) dart.nullFailed(I[0], 690, 67, "shuffleOrder");
+    this[audioSourcePlayers$] = audioSourcePlayers;
+    this[useLazyPreparation$] = useLazyPreparation;
+    this[_shuffleOrder] = shuffleOrder;
+    just_audio_web.ConcatenatingAudioSourcePlayer.__proto__.new.call(this, html5AudioPlayer, id);
+    ;
+  }).prototype = just_audio_web.ConcatenatingAudioSourcePlayer.prototype;
+  dart.addTypeTests(just_audio_web.ConcatenatingAudioSourcePlayer);
+  dart.addTypeCaches(just_audio_web.ConcatenatingAudioSourcePlayer);
+  dart.setMethodSignature(just_audio_web.ConcatenatingAudioSourcePlayer, () => ({
+    __proto__: dart.getMethods(just_audio_web.ConcatenatingAudioSourcePlayer.__proto__),
+    setShuffleOrder: dart.fnType(dart.void, [core.List$(core.int)]),
+    insertAll: dart.fnType(dart.void, [core.int, core.List$(just_audio_web.AudioSourcePlayer)]),
+    removeRange: dart.fnType(dart.void, [core.int, core.int]),
+    move: dart.fnType(dart.void, [core.int, core.int])
+  }));
+  dart.setGetterSignature(just_audio_web.ConcatenatingAudioSourcePlayer, () => ({
+    __proto__: dart.getGetters(just_audio_web.ConcatenatingAudioSourcePlayer.__proto__),
+    sequence: core.List$(just_audio_web.IndexedAudioSourcePlayer),
+    shuffleIndices: core.List$(core.int)
+  }));
+  dart.setLibraryUri(just_audio_web.ConcatenatingAudioSourcePlayer, I[1]);
+  dart.setFieldSignature(just_audio_web.ConcatenatingAudioSourcePlayer, () => ({
+    __proto__: dart.getFields(just_audio_web.ConcatenatingAudioSourcePlayer.__proto__),
+    audioSourcePlayers: dart.finalFieldType(core.List$(just_audio_web.AudioSourcePlayer)),
+    useLazyPreparation: dart.finalFieldType(core.bool),
+    [_shuffleOrder]: dart.fieldType(core.List$(core.int))
+  }));
+  var audioSourcePlayer$ = dart.privateName(just_audio_web, "ClippingAudioSourcePlayer.audioSourcePlayer");
+  var start$ = dart.privateName(just_audio_web, "ClippingAudioSourcePlayer.start");
+  var end$ = dart.privateName(just_audio_web, "ClippingAudioSourcePlayer.end");
+  just_audio_web.ClippingAudioSourcePlayer = class ClippingAudioSourcePlayer extends just_audio_web.IndexedAudioSourcePlayer {
+    get audioSourcePlayer() {
+      return this[audioSourcePlayer$];
+    }
+    set audioSourcePlayer(value) {
+      super.audioSourcePlayer = value;
+    }
+    get start() {
+      return this[start$];
+    }
+    set start(value) {
+      super.start = value;
+    }
+    get end() {
+      return this[end$];
+    }
+    set end(value) {
+      super.end = value;
+    }
+    get sequence() {
+      return T.JSArrayOfIndexedAudioSourcePlayer().of([this]);
+    }
+    get shuffleIndices() {
+      return T.JSArrayOfint().of([0]);
+    }
+    get effectiveStart() {
+      let t1;
+      t1 = this.start;
+      return t1 == null ? core.Duration.zero : t1;
+    }
+    load(initialPosition = null) {
+      return async.async(T.DurationN(), (function* load() {
+        let t1;
+        initialPosition == null ? initialPosition = 0 : null;
+        this[_initialPos] = initialPosition;
+        let absoluteInitialPosition = dart.notNull(this.effectiveStart.inMilliseconds) + dart.notNull(initialPosition);
+        this[_resumePos] = absoluteInitialPosition / 1000.0;
+        let fullDuration = dart.nullCheck(yield this.html5AudioPlayer.loadUri(this.audioSourcePlayer.uri, new core.Duration.new({milliseconds: absoluteInitialPosition})));
+        this[_initialPos] = null;
+        this[_duration] = new core.Duration.new({milliseconds: math.min(core.int, (t1 = this.end, t1 == null ? fullDuration : t1).inMilliseconds, fullDuration.inMilliseconds) - dart.notNull(this.effectiveStart.inMilliseconds)});
+        return this[_duration];
+      }).bind(this));
+    }
+    get remaining() {
+      return dart.notNull(dart.nullCheck(this.end).inMilliseconds) / 1000 - dart.notNull(this[_audioElement].currentTime);
+    }
+    play() {
+      return async.async(dart.void, (function* play() {
+        this[_interruptPlay](just_audio_web.ClipInterruptReason.simultaneous);
+        this[_audioElement].currentTime = dart.nullCheck(this[_resumePos]);
+        yield this[_audioElement][$play]();
+        this[_completer] = T.CompleterOfClipInterruptReason().new();
+        let reason = null;
+        while ((reason = (yield dart.nullCheck(this[_completer]).future)) == just_audio_web.ClipInterruptReason.seek) {
+          this[_completer] = T.CompleterOfClipInterruptReason().new();
+        }
+        if (reason == just_audio_web.ClipInterruptReason.end) {
+          this.html5AudioPlayer.onEnded();
+        }
+        this[_completer] = null;
+      }).bind(this));
+    }
+    pause() {
+      return async.async(dart.void, (function* pause() {
+        this[_interruptPlay](just_audio_web.ClipInterruptReason.pause);
+        this[_resumePos] = this[_audioElement].currentTime;
+        this[_audioElement].pause();
+      }).bind(this));
+    }
+    seek(position) {
+      if (position == null) dart.nullFailed(I[0], 812, 25, "position");
+      return async.async(dart.void, (function* seek() {
+        this[_interruptPlay](just_audio_web.ClipInterruptReason.seek);
+        this[_audioElement].currentTime = this[_resumePos] = dart.notNull(this.effectiveStart.inMilliseconds) / 1000.0 + dart.notNull(position) / 1000.0;
+      }).bind(this));
+    }
+    complete() {
+      return async.async(dart.void, (function* complete() {
+        this[_interruptPlay](just_audio_web.ClipInterruptReason.end);
+      }).bind(this));
+    }
+    timeUpdated(seconds) {
+      if (seconds == null) dart.nullFailed(I[0], 824, 35, "seconds");
+      return async.async(dart.void, (function* timeUpdated() {
+        if (this.end != null) {
+          if (dart.notNull(seconds) >= dart.notNull(dart.nullCheck(this.end).inMilliseconds) / 1000) {
+            this[_interruptPlay](just_audio_web.ClipInterruptReason.end);
+          }
+        }
+      }).bind(this));
+    }
+    get duration() {
+      return this[_duration];
+    }
+    get position() {
+      if (this[_initialPos] != null) return new core.Duration.new({milliseconds: dart.nullCheck(this[_initialPos])});
+      let seconds = this[_audioElement].currentTime;
+      let position = new core.Duration.new({milliseconds: (dart.notNull(seconds) * 1000)[$toInt]()});
+      position = position['-'](this.effectiveStart);
+      if (dart.test(position['<'](core.Duration.zero))) {
+        position = core.Duration.zero;
+      }
+      return position;
+    }
+    get bufferedPosition() {
+      if (dart.notNull(this[_audioElement].buffered.length) > 0) {
+        let seconds = this[_audioElement].buffered.end(dart.notNull(this[_audioElement].buffered.length) - 1);
+        let position = new core.Duration.new({milliseconds: (dart.notNull(seconds) * 1000)[$toInt]()});
+        position = position['-'](this.effectiveStart);
+        if (dart.test(position['<'](core.Duration.zero))) {
+          position = core.Duration.zero;
+        }
+        if (this.duration != null && dart.test(position['>'](dart.nullCheck(this.duration)))) {
+          position = dart.nullCheck(this.duration);
+        }
+        return position;
+      } else {
+        return core.Duration.zero;
+      }
+    }
+    [_interruptPlay](reason) {
+      let t1;
+      if (reason == null) dart.nullFailed(I[0], 868, 43, "reason");
+      if ((t1 = this[_completer], t1 == null ? null : t1.isCompleted) === false) {
+        dart.nullCheck(this[_completer]).complete(reason);
+      }
+    }
+  };
+  (just_audio_web.ClippingAudioSourcePlayer.new = function(html5AudioPlayer, id, audioSourcePlayer, start, end) {
+    if (html5AudioPlayer == null) dart.nullFailed(I[0], 756, 46, "html5AudioPlayer");
+    if (id == null) dart.nullFailed(I[0], 756, 71, "id");
+    if (audioSourcePlayer == null) dart.nullFailed(I[0], 757, 12, "audioSourcePlayer");
+    this[_completer] = null;
+    this[_resumePos] = null;
+    this[_duration] = null;
+    this[_initialPos] = null;
+    this[audioSourcePlayer$] = audioSourcePlayer;
+    this[start$] = start;
+    this[end$] = end;
+    just_audio_web.ClippingAudioSourcePlayer.__proto__.new.call(this, html5AudioPlayer, id);
+    ;
+  }).prototype = just_audio_web.ClippingAudioSourcePlayer.prototype;
+  dart.addTypeTests(just_audio_web.ClippingAudioSourcePlayer);
+  dart.addTypeCaches(just_audio_web.ClippingAudioSourcePlayer);
+  dart.setMethodSignature(just_audio_web.ClippingAudioSourcePlayer, () => ({
+    __proto__: dart.getMethods(just_audio_web.ClippingAudioSourcePlayer.__proto__),
+    load: dart.fnType(async.Future$(dart.nullable(core.Duration)), [], [dart.nullable(core.int)]),
+    play: dart.fnType(async.Future$(dart.void), []),
+    pause: dart.fnType(async.Future$(dart.void), []),
+    seek: dart.fnType(async.Future$(dart.void), [core.int]),
+    complete: dart.fnType(async.Future$(dart.void), []),
+    [_interruptPlay]: dart.fnType(dart.void, [just_audio_web.ClipInterruptReason])
+  }));
+  dart.setGetterSignature(just_audio_web.ClippingAudioSourcePlayer, () => ({
+    __proto__: dart.getGetters(just_audio_web.ClippingAudioSourcePlayer.__proto__),
+    sequence: core.List$(just_audio_web.IndexedAudioSourcePlayer),
+    shuffleIndices: core.List$(core.int),
+    effectiveStart: core.Duration,
+    remaining: core.double,
+    duration: dart.nullable(core.Duration),
+    position: core.Duration,
+    bufferedPosition: core.Duration
+  }));
+  dart.setLibraryUri(just_audio_web.ClippingAudioSourcePlayer, I[1]);
+  dart.setFieldSignature(just_audio_web.ClippingAudioSourcePlayer, () => ({
+    __proto__: dart.getFields(just_audio_web.ClippingAudioSourcePlayer.__proto__),
+    audioSourcePlayer: dart.finalFieldType(just_audio_web.UriAudioSourcePlayer),
+    start: dart.finalFieldType(dart.nullable(core.Duration)),
+    end: dart.finalFieldType(dart.nullable(core.Duration)),
+    [_completer]: dart.fieldType(dart.nullable(async.Completer$(just_audio_web.ClipInterruptReason))),
+    [_resumePos]: dart.fieldType(dart.nullable(core.double)),
+    [_duration]: dart.fieldType(dart.nullable(core.Duration)),
+    [_initialPos]: dart.fieldType(dart.nullable(core.int))
+  }));
+  var _name$ = dart.privateName(just_audio_web, "_name");
+  just_audio_web.ClipInterruptReason = class ClipInterruptReason extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (just_audio_web.ClipInterruptReason.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[0], 876, 6, "index");
+    if (_name == null) dart.nullFailed(I[0], 876, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = just_audio_web.ClipInterruptReason.prototype;
+  dart.addTypeTests(just_audio_web.ClipInterruptReason);
+  dart.addTypeCaches(just_audio_web.ClipInterruptReason);
+  dart.setLibraryUri(just_audio_web.ClipInterruptReason, I[1]);
+  dart.setFieldSignature(just_audio_web.ClipInterruptReason, () => ({
+    __proto__: dart.getFields(just_audio_web.ClipInterruptReason.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(just_audio_web.ClipInterruptReason, ['toString']);
+  just_audio_web.ClipInterruptReason.end = C[0] || CT.C0;
+  just_audio_web.ClipInterruptReason.pause = C[1] || CT.C1;
+  just_audio_web.ClipInterruptReason.seek = C[2] || CT.C2;
+  just_audio_web.ClipInterruptReason.simultaneous = C[3] || CT.C3;
+  just_audio_web.ClipInterruptReason.values = C[4] || CT.C4;
+  var audioSourcePlayer$0 = dart.privateName(just_audio_web, "LoopingAudioSourcePlayer.audioSourcePlayer");
+  var count$ = dart.privateName(just_audio_web, "LoopingAudioSourcePlayer.count");
+  just_audio_web.LoopingAudioSourcePlayer = class LoopingAudioSourcePlayer extends just_audio_web.AudioSourcePlayer {
+    get audioSourcePlayer() {
+      return this[audioSourcePlayer$0];
+    }
+    set audioSourcePlayer(value) {
+      super.audioSourcePlayer = value;
+    }
+    get count() {
+      return this[count$];
+    }
+    set count(value) {
+      super.count = value;
+    }
+    get sequence() {
+      return T.ListOfAudioSourcePlayer().generate(this.count, dart.fn(i => {
+        if (i == null) dart.nullFailed(I[0], 892, 29, "i");
+        return this.audioSourcePlayer;
+      }, T.intToAudioSourcePlayer()))[$expand](just_audio_web.IndexedAudioSourcePlayer, dart.fn(p => {
+        if (p == null) dart.nullFailed(I[0], 893, 20, "p");
+        return p.sequence;
+      }, T.AudioSourcePlayerToListOfIndexedAudioSourcePlayer()))[$toList]();
+    }
+    get shuffleIndices() {
+      let order = T.JSArrayOfint().of([]);
+      let offset = order[$length];
+      for (let i = 0; i < dart.notNull(this.count); i = i + 1) {
+        let childShuffleOrder = this.audioSourcePlayer.shuffleIndices;
+        order[$addAll](childShuffleOrder[$map](core.int, dart.fn(i => {
+          if (i == null) dart.nullFailed(I[0], 902, 43, "i");
+          return dart.notNull(i) + dart.notNull(offset);
+        }, T.intToint()))[$toList]());
+        offset = dart.notNull(offset) + dart.notNull(childShuffleOrder[$length]);
+      }
+      return order;
+    }
+  };
+  (just_audio_web.LoopingAudioSourcePlayer.new = function(html5AudioPlayer, id, audioSourcePlayer, count) {
+    if (html5AudioPlayer == null) dart.nullFailed(I[0], 886, 45, "html5AudioPlayer");
+    if (id == null) dart.nullFailed(I[0], 886, 70, "id");
+    if (audioSourcePlayer == null) dart.nullFailed(I[0], 887, 12, "audioSourcePlayer");
+    if (count == null) dart.nullFailed(I[0], 887, 36, "count");
+    this[audioSourcePlayer$0] = audioSourcePlayer;
+    this[count$] = count;
+    just_audio_web.LoopingAudioSourcePlayer.__proto__.new.call(this, html5AudioPlayer, id);
+    ;
+  }).prototype = just_audio_web.LoopingAudioSourcePlayer.prototype;
+  dart.addTypeTests(just_audio_web.LoopingAudioSourcePlayer);
+  dart.addTypeCaches(just_audio_web.LoopingAudioSourcePlayer);
+  dart.setGetterSignature(just_audio_web.LoopingAudioSourcePlayer, () => ({
+    __proto__: dart.getGetters(just_audio_web.LoopingAudioSourcePlayer.__proto__),
+    sequence: core.List$(just_audio_web.IndexedAudioSourcePlayer),
+    shuffleIndices: core.List$(core.int)
+  }));
+  dart.setLibraryUri(just_audio_web.LoopingAudioSourcePlayer, I[1]);
+  dart.setFieldSignature(just_audio_web.LoopingAudioSourcePlayer, () => ({
+    __proto__: dart.getFields(just_audio_web.LoopingAudioSourcePlayer.__proto__),
+    audioSourcePlayer: dart.finalFieldType(just_audio_web.AudioSourcePlayer),
+    count: dart.finalFieldType(core.int)
+  }));
+  dart.trackLibraries("packages/just_audio_web/just_audio_web.dart", {
+    "package:just_audio_web/just_audio_web.dart": just_audio_web
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["just_audio_web.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/just_audio_web/just_audio_web.dart.lib.js"}');
+  // Exports:
+  return {
+    just_audio_web: just_audio_web
+  };
+}));
+
+//# sourceMappingURL=just_audio_web.dart.lib.js.map

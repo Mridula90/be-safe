@@ -1,0 +1,5 @@
+com/example/flutter_audio_recorder2/BuildConfig.java
+ com.example.flutter_audio_recorder2.BuildConfig
+com/example/flutter_audio_recorder2/FlutterAudioRecorder2Plugin.java
+ com.example.flutter_audio_recorder2.FlutterAudioRecorder2Plugin
+ com.example.flutter_audio_recorder2.FlutterAudioRecorder2Plugin$1

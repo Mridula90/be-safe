@@ -1,0 +1,2 @@
+com/eibo/emadeddin/ripple_animation/BuildConfig.java
+ com.eibo.emadeddin.ripple_animation.BuildConfig
